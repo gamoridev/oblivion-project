@@ -27,16 +27,48 @@ public class Ambiente implements GLEventListener {
     public void display(GLAutoDrawable gLDrawable) {
         final GL2 gl = gLDrawable.getGL().getGL2();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
-
+        final GL2 gl2 = gLDrawable.getGL().getGL2();
+       
+        //Chão
+        
         gl.glPushMatrix();
-        gl.glScalef(1.5f, 1.5f, 1.5f);
-        gl.glColor3f(1f, 0.8f, 0.705882f);
-        glut.glutSolidCube(.20f);
+            gl.glTranslatef( 0f , -0.8f, 0f);
+            gl.glScalef(1.95f, .2f, 1.2f);
+            gl.glColor3f(1f, 1f, 1f);
+            glut.glutSolidCube(1f);
         gl.glPopMatrix();
 
+//        //Parede direita
+//        
+        gl.glPushMatrix();
+            gl.glTranslatef( -.85f , 0f, 0f);
+            gl.glScalef(.2f, 1.85f, 1.2f);
+            gl.glColor3f(1f, 1f, 1f);
+            glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+//        
+//        
+//        //Parede esquerda
+        gl.glPushMatrix();
+            gl.glTranslatef( .85f , 0f, 0f);
+            gl.glScalef(.2f, 1.85f, 1.2f);
+            gl.glColor3f(1f, 1f, 1f);
+            glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+//        
+//        
+//        //Teto
+        gl.glPushMatrix();
+            gl.glTranslatef( 0f , 0.8f, 0f);
+            gl.glScalef(1.95f, .2f, 1.2f);
+            gl.glColor3f(1f, 1f, 1f);
+            glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+//        
+        
         gl.glFlush();
     }
-
+    
     public void displayChanged(GLAutoDrawable gLDrawable,
         boolean modeChanged, boolean deviceChanged) {
     }

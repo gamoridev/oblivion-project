@@ -15,7 +15,8 @@ public class PrototipoOblivion{
 
         Frame frame = new Frame("CUBO 3D");
         
-        frame.setSize(1000, 1000);
+        frame.setSize(1000, 750);
+        frame.setLocationRelativeTo(frame);
         frame.add(canvas);
         frame.setVisible(true);
         frame.setResizable(false);
