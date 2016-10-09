@@ -15,7 +15,9 @@ public class Ambiente implements GLEventListener, KeyListener {
     private float rquad = 0.0f, rquadAntigo = 0.0f;
     private float eixoX , eixoY, eixoZ;
     private float distancia = -5f;
+    static private float  traz = 0;
     private int wView = 1000, yView = 750;
+    
 
     /**
      *
@@ -29,7 +31,7 @@ public class Ambiente implements GLEventListener, KeyListener {
 
         //Transformação do viewPort       
         gl.glViewport(0, 0, this.wView, this.yView);
-        gl.glLoadIdentity(); 
+        //gl.glLoadIdentity(); 
 
         gl.glMatrixMode(GL2.GL_PROJECTION);        	
         gl.glLoadIdentity();
@@ -39,7 +41,7 @@ public class Ambiente implements GLEventListener, KeyListener {
 
         //Projeção Perspectiva do objeto
 //        gl.glFrustum(-1, 1, -1, 1, 0.1, 100.0);
-        glu.gluPerspective(45f, 1, 0.1, 1000);
+        glu.gluPerspective(45f, 1, 0.1, 100);
 
         //Transformação de modelo
         gl.glMatrixMode(GL2.GL_MODELVIEW);
@@ -48,18 +50,12 @@ public class Ambiente implements GLEventListener, KeyListener {
 
         gl.glRotatef(rquad, eixoX, eixoY, eixoZ);
        
-        //Chão
-        gl.glPushMatrix();
-            gl.glTranslatef( 0f , -0.8f, 0f);
-            gl.glScalef(1.95f, .2f, 1.2f);
-            gl.glColor3f(0f, 0f, 1f);
-            glut.glutSolidCube(1f);
-        gl.glPopMatrix();
-
+        
+        gl.glTranslatef(0, 0, traz);
         //Parede direita
         gl.glPushMatrix();
             gl.glTranslatef( -.85f , 0f, 0f);
-            gl.glScalef(.2f, 1.85f, 20f);
+            gl.glScalef(.2f, 1.85f, 50f);
             gl.glColor3f(1f, 1f, 0f);
             glut.glutSolidCube(1f);
         gl.glPopMatrix();
@@ -67,7 +63,7 @@ public class Ambiente implements GLEventListener, KeyListener {
         //Parede esquerda
         gl.glPushMatrix();
             gl.glTranslatef( .85f , 0f, 0f);
-            gl.glScalef(.2f, 1.85f, 20f);
+            gl.glScalef(.2f, 1.85f, 50f);
             gl.glColor3f(0f, 1f, 1f);
             glut.glutSolidCube(1f);
         gl.glPopMatrix();
@@ -75,7 +71,15 @@ public class Ambiente implements GLEventListener, KeyListener {
         //Teto
         gl.glPushMatrix();
             gl.glTranslatef( 0f , 0.8f, 0f);
-            gl.glScalef(1.95f, .2f, 1.2f);
+            gl.glScalef(1.95f, .2f, 50f);
+            gl.glColor3f(1f, 0f, 1f);
+            glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+        
+        //Chão
+        gl.glPushMatrix();
+            gl.glTranslatef( 0f , -0.8f, 0f);
+            gl.glScalef(1.95f, .2f, 50f);
             gl.glColor3f(0f, 0f, 1f);
             glut.glutSolidCube(1f);
         gl.glPopMatrix();
@@ -112,16 +116,23 @@ public class Ambiente implements GLEventListener, KeyListener {
                 eixoY = 0;
                 eixoZ = 0;
                 break;
+            case KeyEvent.VK_DOWN:
+                atualizaRotacao(-2f);
+                eixoX = 1;
+                eixoY = 0;
+                eixoZ = 0;
+                break;
             case KeyEvent.VK_RIGHT:
                 atualizaRotacao(2f);
                 eixoX = 0;
+                eixoY = 0;
+                eixoZ = 1;
+                break;
+            case KeyEvent.VK_LEFT:
+                atualizaRotacao(-2f);
+                eixoX = 0;
                 eixoY = 1;
                 eixoZ = 0;
-                break;
-            case KeyEvent.VK_A:
-                break;
-            case KeyEvent.VK_D:
-//                atualizaRotacao(2f);
                 break;
             case KeyEvent.VK_W:
                 this.distancia += 1;
@@ -131,15 +142,16 @@ public class Ambiente implements GLEventListener, KeyListener {
                 this.distancia -= 1;
                 System.out.println(distancia);
                 break;
-//            case KeyEvent.VK_UP:
-//                this.wView += 10;
-//                this.yView += 10;
+//            case KeyEvent.VK_DOWN:
+//                this.wView -= 10;
+//                this.yView -= 10;
 //                System.out.println(wView);
 //                break;
-            case KeyEvent.VK_DOWN:
-                this.wView -= 10;
-                this.yView -= 10;
-                System.out.println(wView);
+            case KeyEvent.VK_H:
+                traz = traz + 5;
+                break;
+            case KeyEvent.VK_G:
+                traz = traz - 5;
                 break;
             default:
                 break;
