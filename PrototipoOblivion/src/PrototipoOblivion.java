@@ -13,7 +13,7 @@ public class PrototipoOblivion{
         GLCapabilities caps = new GLCapabilities(glp);
         GLCanvas canvas = new GLCanvas(caps);
 
-        Frame frame = new Frame("CUBO 3D");
+        Frame frame = new Frame("Protótipo Oblivion");
         
         frame.setSize(1000, 750);
         frame.setLocationRelativeTo(frame);
@@ -33,7 +33,7 @@ public class PrototipoOblivion{
         
         canvas.addGLEventListener(ambiente);
 //        canvas.addGLEventListener(personagem);
-//        canvas.addKeyListener(personagem);
+        canvas.addKeyListener(ambiente);
 
         FPSAnimator animator = new FPSAnimator(canvas, 30);
         animator.start();
