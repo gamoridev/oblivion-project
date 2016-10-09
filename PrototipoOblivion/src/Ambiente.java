@@ -48,41 +48,51 @@ public class Ambiente implements GLEventListener, KeyListener {
         gl.glLoadIdentity(); 
         glu.gluLookAt(0, 0, distancia, 0, 0, -0.1, 0, 1, 0);
 
-        gl.glRotatef(rquad, eixoX, eixoY, eixoZ);
-       
         
-        gl.glTranslatef(0, 0, traz);
-        //Parede direita
+        //Ambiente
         gl.glPushMatrix();
-            gl.glTranslatef( -.85f , 0f, 0f);
-            gl.glScalef(.2f, 1.85f, 50f);
-            gl.glColor3f(1f, 1f, 0f);
-            glut.glutSolidCube(1f);
+            gl.glRotatef(rquad, eixoX, eixoY, eixoZ);
+            gl.glTranslatef(0, 0, traz);
+            //Parede direita
+            gl.glPushMatrix();
+                gl.glTranslatef( -.85f , 0f, 0f);
+                gl.glScalef(.2f, 1.85f, 50f);
+                gl.glColor3f(1f, 1f, 0f);
+                glut.glutSolidCube(1f);
+            gl.glPopMatrix();
+
+            //Parede esquerda
+            gl.glPushMatrix();
+                gl.glTranslatef( .85f , 0f, 0f);
+                gl.glScalef(.2f, 1.85f, 50f);
+                gl.glColor3f(0f, 1f, 1f);
+                glut.glutSolidCube(1f);
+            gl.glPopMatrix();
+
+            //Teto
+            gl.glPushMatrix();
+                gl.glTranslatef( 0f , 0.8f, 0f);
+                gl.glScalef(1.95f, .2f, 50f);
+                gl.glColor3f(1f, 0f, 1f);
+                glut.glutSolidCube(1f);
+            gl.glPopMatrix();
+
+            //Chão
+            gl.glPushMatrix();
+                gl.glTranslatef( 0f , -0.8f, 0f);
+                gl.glScalef(1.95f, .2f, 50f);
+                gl.glColor3f(0f, 0f, 1f);
+                glut.glutSolidCube(1f);
+            gl.glPopMatrix();
         gl.glPopMatrix();
 
-        //Parede esquerda
+        
+        //Personagem
         gl.glPushMatrix();
-            gl.glTranslatef( .85f , 0f, 0f);
-            gl.glScalef(.2f, 1.85f, 50f);
-            gl.glColor3f(0f, 1f, 1f);
-            glut.glutSolidCube(1f);
-        gl.glPopMatrix();
-
-        //Teto
-        gl.glPushMatrix();
-            gl.glTranslatef( 0f , 0.8f, 0f);
-            gl.glScalef(1.95f, .2f, 50f);
-            gl.glColor3f(1f, 0f, 1f);
-            glut.glutSolidCube(1f);
+            gl.glColor3f(1f, 0.411765f, 0.705882f);
+            glut.glutSolidCube(.20f);
         gl.glPopMatrix();
         
-        //Chão
-        gl.glPushMatrix();
-            gl.glTranslatef( 0f , -0.8f, 0f);
-            gl.glScalef(1.95f, .2f, 50f);
-            gl.glColor3f(0f, 0f, 1f);
-            glut.glutSolidCube(1f);
-        gl.glPopMatrix();
         
         gl.glFlush();
     }
