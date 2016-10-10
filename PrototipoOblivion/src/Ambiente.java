@@ -3,10 +3,17 @@ import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
+import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUquadric;
 import com.jogamp.opengl.util.gl2.GLUT;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Ambiente implements GLEventListener, KeyListener {
 
@@ -18,7 +25,7 @@ public class Ambiente implements GLEventListener, KeyListener {
     static private float  traz = 0;
     private int wView = 1000, yView = 750;
     
-
+    private Texture texturaTerra;
     /**
      *
      * @param gLDrawable Contém as características do objeto, atualizando-o a cada frame.
@@ -46,49 +53,65 @@ public class Ambiente implements GLEventListener, KeyListener {
         //Transformação de modelo
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity(); 
-        glu.gluLookAt(0, 0, distancia, 0, 0, -0.1, 0, 1, 0);
+        glu.gluLookAt(0, .2f, distancia, 0, 0, -0.1, 0, 1, 0);
 
         
         //Ambiente
+        
         gl.glPushMatrix();
             gl.glRotatef(rquad, eixoX, eixoY, eixoZ);
             gl.glTranslatef(0, 0, traz);
-            //Parede direita
             gl.glPushMatrix();
-                gl.glTranslatef( -.85f , 0f, 0f);
-                gl.glScalef(.2f, 1.85f, 50f);
-                gl.glColor3f(1f, 1f, 0f);
-                glut.glutSolidCube(1f);
+                
+                gl.glColor3f(1f, 1f, 1f);
+                //Parede direita
+                gl.glPushMatrix();
+                    gl.glTranslatef( -.85f , 0f, 0f);
+                    gl.glScalef(.2f, 1.85f, 50f);
+                    gl.glColor3f(1f, 1f, 1f);
+                    glut.glutSolidCube(1f);
+                gl.glPopMatrix();
+
+                //Parede esquerda
+                gl.glPushMatrix();
+                    gl.glTranslatef( .85f , 0f, 0f);
+                    gl.glScalef(.2f, 1.85f, 50f);
+                    gl.glColor3f(0f, 1f, 1f);
+                    glut.glutSolidCube(1f);
+                gl.glPopMatrix();
+
+                //Teto
+                gl.glPushMatrix();
+                    gl.glTranslatef( 0f , 0.8f, 0f);
+                    gl.glScalef(1.95f, .2f, 50f);
+                    gl.glColor3f(1f, 0f, 1f);
+                    glut.glutSolidCube(1f);
+                gl.glPopMatrix();
+
+                //Chão
+                gl.glPushMatrix();
+                    gl.glTranslatef( 0f , -0.8f, 0f);
+                    gl.glScalef(1.95f, .2f, 50f);
+                    gl.glColor3f(0f, 0f, 1f);
+                    glut.glutSolidCube(1f);
+                gl.glPopMatrix();
             gl.glPopMatrix();
 
-            //Parede esquerda
+            //Linhas
             gl.glPushMatrix();
-                gl.glTranslatef( .85f , 0f, 0f);
-                gl.glScalef(.2f, 1.85f, 50f);
-                gl.glColor3f(0f, 1f, 1f);
-                glut.glutSolidCube(1f);
-            gl.glPopMatrix();
-
-            //Teto
-            gl.glPushMatrix();
-                gl.glTranslatef( 0f , 0.8f, 0f);
-                gl.glScalef(1.95f, .2f, 50f);
-                gl.glColor3f(1f, 0f, 1f);
-                glut.glutSolidCube(1f);
-            gl.glPopMatrix();
-
-            //Chão
-            gl.glPushMatrix();
-                gl.glTranslatef( 0f , -0.8f, 0f);
-                gl.glScalef(1.95f, .2f, 50f);
-                gl.glColor3f(0f, 0f, 1f);
-                glut.glutSolidCube(1f);
+                gl.glBegin(GL2.GL_LINES);
+                    gl.glColor3f(0f, 0f, 0f);
+                    
+                    gl.glVertex3f( 3.0f, -0.8f,  50.0f);
+                    gl.glVertex3f( 3.0f, -0.8f, -50.0f);
+                gl.glEnd();
             gl.glPopMatrix();
         gl.glPopMatrix();
-
+        
         
         //Personagem
         gl.glPushMatrix();
+            gl.glTranslatef(0f, -.5f, 0f);
             gl.glColor3f(1f, 0.411765f, 0.705882f);
             glut.glutSolidCube(.20f);
         gl.glPopMatrix();
@@ -177,4 +200,7 @@ public class Ambiente implements GLEventListener, KeyListener {
         rquad += giro;
         System.out.println("Raio de rotação: "+ rquad);
     }
+    
+
+
 }
