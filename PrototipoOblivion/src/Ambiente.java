@@ -12,20 +12,30 @@ import com.jogamp.opengl.util.texture.TextureData;
 import com.jogamp.opengl.util.texture.TextureIO;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class Ambiente implements GLEventListener, KeyListener {
 
     private final GLUT glut = new GLUT();
     private final GLU glu = new GLU();
     private float rquad = 0.0f, rquadAntigo = 0.0f;
-    private float eixoX , eixoY, eixoZ;
-    private float distancia = -5f;
-    static private float  traz = 0;
+    private float eixoX , eixoY, eixoZ= -4f;
     private int wView = 1000, yView = 750;
     
-    private Texture texturaTerra;
+    //VARIAVEIS TEXTURA
+    private int largura, altura;
+    private TextureData td;
+    private BufferedImage imagem;
+    private ByteBuffer buffer;
+    private int idTextura[];
+    private GL2 gl;
+    
     /**
      *
      * @param gLDrawable Contém as características do objeto, atualizando-o a cada frame.
@@ -48,71 +58,52 @@ public class Ambiente implements GLEventListener, KeyListener {
 
         //Projeção Perspectiva do objeto
 //        gl.glFrustum(-1, 1, -1, 1, 0.1, 100.0);
-        glu.gluPerspective(45f, 1, 0.1, 100);
+        glu.gluPerspective(50f, 1, 0.1, 100);
 
         //Transformação de modelo
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity(); 
-        glu.gluLookAt(0, .2f, distancia, 0, 0, -0.1, 0, 1, 0);
+        glu.gluLookAt(eixoX, eixoY, eixoZ, 0, 0, -0.1, 0, 1, 0);
 
         
         //Ambiente
-        
+        gl.glEnable(GL.GL_TEXTURE_2D);
         gl.glPushMatrix();
-            gl.glRotatef(rquad, eixoX, eixoY, eixoZ);
-            gl.glTranslatef(0, 0, traz);
-            gl.glPushMatrix();
-                
-                gl.glColor3f(1f, 1f, 1f);
-                //Parede direita
-                gl.glPushMatrix();
-                    gl.glTranslatef( -.85f , 0f, 0f);
-                    gl.glScalef(.2f, 1.85f, 50f);
-                    gl.glColor3f(1f, 1f, 1f);
-                    glut.glutSolidCube(1f);
-                gl.glPopMatrix();
+            gl.glBegin (GL2.GL_QUADS);
 
-                //Parede esquerda
-                gl.glPushMatrix();
-                    gl.glTranslatef( .85f , 0f, 0f);
-                    gl.glScalef(.2f, 1.85f, 50f);
-                    gl.glColor3f(0f, 1f, 1f);
-                    glut.glutSolidCube(1f);
-                gl.glPopMatrix();
+            //Parede Direita
+            gl.glColor3f(1f,1f,1f);
+        gl.glTexCoord2f(-1f, -1f);        gl.glVertex3f(-2f, 2f, 30f);
+            gl.glTexCoord2f(-1f, 1f);     gl.glVertex3f(-2f, 2f, -30f);
+            gl.glTexCoord2f(1f, -1f);     gl.glVertex3f(-2f, -2f, -30f);
+            gl.glTexCoord2f(1f, 1f);      gl.glVertex3f(-2f, -2f, 30f);
+            
+            //Parede esquerda
+            gl.glTexCoord2f(-10f, -10f);    gl.glVertex3f(2f, 2f, 30f);
+            gl.glTexCoord2f(-10f, 10f);     gl.glVertex3f(2f, 2f, -30f);
+            gl.glTexCoord2f(10f, -10f);     gl.glVertex3f(2f, -2f, -30f);
+            gl.glTexCoord2f(10f, 10f);      gl.glVertex3f(2f, -2f, 30f);
 
-                //Teto
-                gl.glPushMatrix();
-                    gl.glTranslatef( 0f , 0.8f, 0f);
-                    gl.glScalef(1.95f, .2f, 50f);
-                    gl.glColor3f(1f, 0f, 1f);
-                    glut.glutSolidCube(1f);
-                gl.glPopMatrix();
+            //Teto
+            gl.glTexCoord2f(-5f, -5f);    gl.glVertex3f(-2f, 2f, 30f);
+            gl.glTexCoord2f(-5f, 5f);     gl.glVertex3f(-2f, 2f, -30f);
+            gl.glTexCoord2f(5f, -5f);     gl.glVertex3f(2f, 2f, -30f);
+            gl.glTexCoord2f(5f, 5f);      gl.glVertex3f(2f, 2f, 30f);
 
-                //Chão
-                gl.glPushMatrix();
-                    gl.glTranslatef( 0f , -0.8f, 0f);
-                    gl.glScalef(1.95f, .2f, 50f);
-                    gl.glColor3f(0f, 0f, 1f);
-                    glut.glutSolidCube(1f);
-                gl.glPopMatrix();
-            gl.glPopMatrix();
+            //Chão
+            gl.glTexCoord2f(-2f, -2f);  gl.glVertex3f(-2f, -2f, 30f);
+            gl.glTexCoord2f(-2f, 2f);   gl.glVertex3f(-2f, -2f, -30f);
+            gl.glTexCoord2f(2f, -2f);   gl.glVertex3f(2f, -2f, -30f);
+            gl.glTexCoord2f(2f, 2f);    gl.glVertex3f(2f, -2f, 30f);
 
-            //Linhas
-            gl.glPushMatrix();
-                gl.glBegin(GL2.GL_LINES);
-                    gl.glColor3f(0f, 0f, 0f);
-                    
-                    gl.glVertex3f( 3.0f, -0.8f,  50.0f);
-                    gl.glVertex3f( 3.0f, -0.8f, -50.0f);
-                gl.glEnd();
-            gl.glPopMatrix();
+            gl.glEnd();
         gl.glPopMatrix();
-        
+        gl.glDisable(GL.GL_TEXTURE_2D);	
         
         //Personagem
         gl.glPushMatrix();
             gl.glTranslatef(0f, -.5f, 0f);
-            gl.glColor3f(1f, 0.411765f, 0.705882f);
+            gl.glColor3f(1f, 0f, 0f);
             glut.glutSolidCube(.20f);
         gl.glPopMatrix();
         
@@ -126,6 +117,23 @@ public class Ambiente implements GLEventListener, KeyListener {
 
     @Override
     public void init(GLAutoDrawable glad) {
+        // Comandos de inicialização para textura
+		loadImage("te.jpg");
+                gl = glad.getGL().getGL2();
+		// Gera identificador de textura
+		idTextura = new int[10];
+		gl.glGenTextures(1, idTextura, 1);
+
+		// Especifica qual é a textura corrente pelo identificador 
+		gl.glBindTexture(GL.GL_TEXTURE_2D, idTextura[0]);	
+
+		// Envio da textura para OpenGL
+		gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, 3, largura, 
+				altura, 0, GL.GL_BGR, GL.GL_UNSIGNED_BYTE, buffer);
+
+		// Define os filtros de magnificação e minificação 
+		gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MIN_FILTER,GL.GL_LINEAR);	
+		gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MAG_FILTER,GL.GL_LINEAR);
     }
 
     @Override
@@ -144,47 +152,22 @@ public class Ambiente implements GLEventListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
-                atualizaRotacao(2f);
-                eixoX = 1;
-                eixoY = 0;
-                eixoZ = 0;
+                eixoY += 1;
                 break;
             case KeyEvent.VK_DOWN:
-                atualizaRotacao(-2f);
-                eixoX = 1;
-                eixoY = 0;
-                eixoZ = 0;
+                eixoY -= 1;
                 break;
             case KeyEvent.VK_RIGHT:
-                atualizaRotacao(2f);
-                eixoX = 0;
-                eixoY = 0;
-                eixoZ = 1;
+                eixoX += 1;
                 break;
             case KeyEvent.VK_LEFT:
-                atualizaRotacao(-2f);
-                eixoX = 0;
-                eixoY = 1;
-                eixoZ = 0;
+                eixoX -= 1;
                 break;
-            case KeyEvent.VK_W:
-                this.distancia += 1;
-                System.out.println(distancia);
-                break;
-            case KeyEvent.VK_S:
-                this.distancia -= 1;
-                System.out.println(distancia);
-                break;
-//            case KeyEvent.VK_DOWN:
-//                this.wView -= 10;
-//                this.yView -= 10;
-//                System.out.println(wView);
-//                break;
             case KeyEvent.VK_H:
-                traz = traz + 5;
+                eixoZ += 1;
                 break;
             case KeyEvent.VK_G:
-                traz = traz - 5;
+                eixoZ -= 1;
                 break;
             default:
                 break;
@@ -194,13 +177,31 @@ public class Ambiente implements GLEventListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
     }
-    
-    private void atualizaRotacao(float giro){
-        rquadAntigo = rquad;
-        rquad += giro;
-        System.out.println("Raio de rotação: "+ rquad);
-    }
-    
+   
+    public void loadImage(String fileName)
+	{
+		// Tenta carregar o arquivo		
+		imagem = null;
+		try {
+			imagem = ImageIO.read(new File("src\\" + fileName));
+			// Obtém largura e altura
+			largura  = imagem.getWidth();
+			altura = imagem.getHeight();
+		}
+		catch (IOException e) {
+			JOptionPane.showMessageDialog(null,"Erro na leitura do arquivo "+fileName);
+                }
 
+		//Carrega a textura		
+		try {
+			InputStream stream = getClass().getResourceAsStream(fileName);
+			td = TextureIO.newTextureData(GLProfile.getDefault(), stream, false, "jpg");
+		}
+		catch (IOException exc) {
+			System.exit(1);
+		}
+		// ...e obtém um ByteBuffer a partir dela
+		buffer = (ByteBuffer) td.getBuffer();
+	}
 
 }
