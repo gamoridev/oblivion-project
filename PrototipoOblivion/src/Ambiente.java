@@ -20,12 +20,19 @@ import java.nio.ByteBuffer;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+/*
+    PARA MOVIMENTAR O PERSONAGEM SE USA O W, A e D
+    PARA MOVIMENTAR A CAMERA SE USA AS SETINHAS, G e H
+    
+*/
 public class Ambiente implements GLEventListener, KeyListener {
 
     private final GLUT glut = new GLUT();
     private final GLU glu = new GLU();
     private float rquad = 0.0f, rquadAntigo = 0.0f;
-    private float eixoX , eixoY, eixoZ= -4f;
+    private float eixoX = 0f, eixoY = 0f, eixoZ= -34f;
+    private float blocoX = 0f, blocoY = -1.5f, blocoZ = -28f;
+    private float ambX = 0f, ambY = 0f, ambZ = 0f;
     private int wView = 1000, yView = 750;
     
     //VARIAVEIS TEXTURA
@@ -36,10 +43,7 @@ public class Ambiente implements GLEventListener, KeyListener {
     private int idTextura[];
     private GL2 gl;
     
-    /**
-     *
-     * @param gLDrawable Contém as características do objeto, atualizando-o a cada frame.
-     */
+
     @Override
     public void display(GLAutoDrawable gLDrawable) {
         final GL2 gl = gLDrawable.getGL().getGL2();
@@ -47,7 +51,7 @@ public class Ambiente implements GLEventListener, KeyListener {
         gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
 
         //Transformação do viewPort       
-        gl.glViewport(0, 0, this.wView, this.yView);
+        //gl.glViewport(0, 0, this.wView, this.yView);
         //gl.glLoadIdentity(); 
 
         gl.glMatrixMode(GL2.GL_PROJECTION);        	
@@ -69,32 +73,36 @@ public class Ambiente implements GLEventListener, KeyListener {
         //Ambiente
         gl.glEnable(GL.GL_TEXTURE_2D);
         gl.glPushMatrix();
+            gl.glTranslatef(ambX, ambY, ambZ);
             gl.glBegin (GL2.GL_QUADS);
 
             //Parede Direita
             gl.glColor3f(1f,1f,1f);
-        gl.glTexCoord2f(-1f, -1f);        gl.glVertex3f(-2f, 2f, 30f);
-            gl.glTexCoord2f(-1f, 1f);     gl.glVertex3f(-2f, 2f, -30f);
-            gl.glTexCoord2f(1f, -1f);     gl.glVertex3f(-2f, -2f, -30f);
-            gl.glTexCoord2f(1f, 1f);      gl.glVertex3f(-2f, -2f, 30f);
+            gl.glTexCoord2f(0.0f, 0.0f);    gl.glVertex3f(-2f, 2f, 30f);
+            gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, 2f, -30f);
+            gl.glTexCoord2f(-3.0f, -3.0f);    gl.glVertex3f(-2f, -2f, -30f);
+            gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(-2f, -2f, 30f);
             
             //Parede esquerda
-            gl.glTexCoord2f(-10f, -10f);    gl.glVertex3f(2f, 2f, 30f);
-            gl.glTexCoord2f(-10f, 10f);     gl.glVertex3f(2f, 2f, -30f);
-            gl.glTexCoord2f(10f, -10f);     gl.glVertex3f(2f, -2f, -30f);
-            gl.glTexCoord2f(10f, 10f);      gl.glVertex3f(2f, -2f, 30f);
+            gl.glColor3f(1f,1f,1f);
+            gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(2f, 2f, 30f);
+            gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(2f, 2f, -30f);
+            gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(2f, -2f, -30f);
+            gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(2f, -2f, 30f);
 
             //Teto
-            gl.glTexCoord2f(-5f, -5f);    gl.glVertex3f(-2f, 2f, 30f);
-            gl.glTexCoord2f(-5f, 5f);     gl.glVertex3f(-2f, 2f, -30f);
-            gl.glTexCoord2f(5f, -5f);     gl.glVertex3f(2f, 2f, -30f);
-            gl.glTexCoord2f(5f, 5f);      gl.glVertex3f(2f, 2f, 30f);
+            gl.glColor3f(1f,1f,1f);
+            gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(-2f, 2f, 30f);
+            gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, 2f, -30f);
+            gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(2f, 2f, -30f);
+            gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(2f, 2f, 30f);
 
             //Chão
-            gl.glTexCoord2f(-2f, -2f);  gl.glVertex3f(-2f, -2f, 30f);
-            gl.glTexCoord2f(-2f, 2f);   gl.glVertex3f(-2f, -2f, -30f);
-            gl.glTexCoord2f(2f, -2f);   gl.glVertex3f(2f, -2f, -30f);
-            gl.glTexCoord2f(2f, 2f);    gl.glVertex3f(2f, -2f, 30f);
+            gl.glColor3f(1f,1f,1f);
+            gl.glTexCoord2f(0.0f, 0.0f);    gl.glVertex3f(-2f, -2f, 30f);
+            gl.glTexCoord2f(-3.0f, 0.0f);   gl.glVertex3f(-2f, -2f, -30f);
+            gl.glTexCoord2f(-3.0f, -3.0f);  gl.glVertex3f(2f, -2f, -30f);
+            gl.glTexCoord2f(0.0f, -3.0f);   gl.glVertex3f(2f, -2f, 30f);
 
             gl.glEnd();
         gl.glPopMatrix();
@@ -102,9 +110,9 @@ public class Ambiente implements GLEventListener, KeyListener {
         
         //Personagem
         gl.glPushMatrix();
-            gl.glTranslatef(0f, -.5f, 0f);
+            gl.glTranslatef(blocoX, blocoY, blocoZ);
             gl.glColor3f(1f, 0f, 0f);
-            glut.glutSolidCube(.20f);
+            glut.glutSolidCube(.8f);
         gl.glPopMatrix();
         
         
@@ -117,8 +125,9 @@ public class Ambiente implements GLEventListener, KeyListener {
 
     @Override
     public void init(GLAutoDrawable glad) {
+        //TUDO ISSO AQUI PRA TEXTURA DO AMBIENTE
         // Comandos de inicialização para textura
-		loadImage("te.jpg");
+		loadImage("te2.jpg");// TEM 2 ARQUIVOS O TE E O TE2
                 gl = glad.getGL().getGL2();
 		// Gera identificador de textura
 		idTextura = new int[10];
@@ -157,10 +166,10 @@ public class Ambiente implements GLEventListener, KeyListener {
             case KeyEvent.VK_DOWN:
                 eixoY -= 1;
                 break;
-            case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_LEFT:
                 eixoX += 1;
                 break;
-            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_RIGHT:
                 eixoX -= 1;
                 break;
             case KeyEvent.VK_H:
@@ -168,6 +177,20 @@ public class Ambiente implements GLEventListener, KeyListener {
                 break;
             case KeyEvent.VK_G:
                 eixoZ -= 1;
+                break;
+            case KeyEvent.VK_W:
+                ambZ -= 2;
+                break;
+            case KeyEvent.VK_S:
+                ambZ += 2;
+                break;
+            case KeyEvent.VK_A:
+                blocoX += 1.2;
+                ambZ -= 2;
+                break;
+            case KeyEvent.VK_D:
+                blocoX -= 1.2;
+                ambZ -= 2;
                 break;
             default:
                 break;
