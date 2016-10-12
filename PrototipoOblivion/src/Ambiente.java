@@ -261,10 +261,10 @@ public class Ambiente implements GLEventListener, KeyListener {
     
     private void jumpDireita(){
         if (pula && blocoY <= auxY){
-            pula(.1f,-.08f);
+            pula(.1f,-.04f);
         } else {
             pula = false;
-            pula(-.1f,0);
+            pula(-.1f,-.04f);
             if (blocoY == -1.5f){ 
                 pula = true;
                 startD = false;
@@ -274,10 +274,10 @@ public class Ambiente implements GLEventListener, KeyListener {
 
     private void jumpEsquerda(){
         if (pula && blocoY <= auxY){
-            pula(.1f,.08f);
+            pula(.1f,.04f);
         } else {
             pula = false;
-            pula(-.1f,0);
+            pula(-.1f,04f);
             if (blocoY == -1.5f){ 
                 pula = true;
                 startE = false;
