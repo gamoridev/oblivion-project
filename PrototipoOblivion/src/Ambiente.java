@@ -37,6 +37,7 @@ public class Ambiente implements GLEventListener, KeyListener {
     private boolean pula = true, start;
     private float ambX = 0f, ambY = 0f, ambZ = 0f;
     private int wView = 1000, yView = 750;
+    int cont = 0;
     
     //VARIAVEIS TEXTURA
     private int largura, altura;
@@ -118,11 +119,10 @@ public class Ambiente implements GLEventListener, KeyListener {
             glut.glutSolidCube(.8f);
         gl.glPopMatrix();
         
-        gl.glFlush();
         if (start){
             jump();
-            System.out.println(blocoY);
         }
+        gl.glFlush();
     }
     
     public void displayChanged(GLAutoDrawable gLDrawable,
@@ -199,6 +199,9 @@ public class Ambiente implements GLEventListener, KeyListener {
                 blocoX -= 1.2;
                 ambZ -= 2;
                 break;
+            case KeyEvent.VK_ESCAPE:
+                System.exit(0);
+                break;
             default:
                 break;
         }
@@ -240,12 +243,13 @@ public class Ambiente implements GLEventListener, KeyListener {
     
     private void jump(){
         if (pula && blocoY <= auxY){
-            pula(0.1f);
+            pula(.1f);
         } else {
             pula = false;
-            pula(-0.1f);
+            pula(-.1f);
             if (blocoY == -1.5f){
                 pula = true;
+                start = false;
             }
         }
     }
