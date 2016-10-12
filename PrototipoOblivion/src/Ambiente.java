@@ -33,6 +33,7 @@ public class Ambiente implements GLEventListener, KeyListener {
     private float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
     private float auxY = 0, auxX = 0;
     private boolean pula = true, startF, startD, startE;
+    private boolean mAmbiente;
     private float ambX = 0f, ambY = 0f, ambZ = 0f;
     private int wView = 1000, yView = 750;
     int cont = 0;
@@ -119,12 +120,15 @@ public class Ambiente implements GLEventListener, KeyListener {
         
         if (startF){
             jumpFrente();
+            moveAmbienteFrente();
         }
         if (startD){
             jumpDireita();
+            moveAmbienteFrente();
         }
         if (startE){
             jumpEsquerda();
+            moveAmbienteFrente();
         }
         gl.glFlush();
     }
@@ -190,18 +194,18 @@ public class Ambiente implements GLEventListener, KeyListener {
                 break;
             case KeyEvent.VK_W:
                 startF = true;
-                ambZ -= 2;
+                mAmbiente = true;
                 break;
             case KeyEvent.VK_S:
-                ambZ += 2;
+                mAmbiente = true;
                 break;
             case KeyEvent.VK_A:
                 startE = true;
-                ambZ -= 2;
+                mAmbiente = true;
                 break;
             case KeyEvent.VK_D:
                 startD = true;
-                ambZ -= 2;
+                mAmbiente = true;
                 break;
             case KeyEvent.VK_ESCAPE:
                 System.exit(0);
@@ -241,6 +245,10 @@ public class Ambiente implements GLEventListener, KeyListener {
         buffer = (ByteBuffer) td.getBuffer();
     }
     
+    private void moveAmbienteFrente(){
+        ambZ -= .15;
+    }
+    
     private void pula(float velocidadeY, float velocidadeX){
         blocoY += velocidadeY;
         blocoX += velocidadeX;
@@ -277,7 +285,7 @@ public class Ambiente implements GLEventListener, KeyListener {
             pula(.1f,.04f);
         } else {
             pula = false;
-            pula(-.1f,04f);
+            pula(-.1f,.04f);
             if (blocoY == -1.5f){ 
                 pula = true;
                 startE = false;
