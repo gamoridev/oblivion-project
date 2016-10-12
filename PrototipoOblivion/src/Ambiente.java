@@ -247,7 +247,7 @@ public class Ambiente implements GLEventListener, KeyListener {
         } else {
             pula = false;
             pula(-.1f);
-            if (blocoY == -1.5f){
+            if (blocoY == -1.5f){ 
                 pula = true;
                 start = false;
             }
