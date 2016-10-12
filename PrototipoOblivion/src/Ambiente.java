@@ -1,4 +1,3 @@
-
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
@@ -35,6 +34,7 @@ public class Ambiente implements GLEventListener, KeyListener {
     private boolean pula = true, startF, startD, startE, CD = true;
     private boolean mAmbiente;
     private float ambX = 0f, ambY = 0f, ambZ = 0f;
+    private float anguloAmb = 0;
     private int wView = 1000, yView = 750;
     int cont = 0;
     
@@ -76,6 +76,7 @@ public class Ambiente implements GLEventListener, KeyListener {
         //Ambiente
         gl.glEnable(GL.GL_TEXTURE_2D);
         gl.glPushMatrix();
+            gl.glRotatef(anguloAmb,0f, 0f, 1f);
             gl.glTranslatef(ambX, ambY, ambZ);
             gl.glBegin (GL2.GL_QUADS);
 
@@ -141,22 +142,23 @@ public class Ambiente implements GLEventListener, KeyListener {
     public void init(GLAutoDrawable glad) {
         //TUDO ISSO AQUI PRA TEXTURA DO AMBIENTE
         // Comandos de inicialização para textura
-		loadImage("te.jpg");// TEM 2 ARQUIVOS O TE E O TE2
-                gl = glad.getGL().getGL2();
-		// Gera identificador de textura
-		idTextura = new int[10];
-		gl.glGenTextures(1, idTextura, 1);
+        loadImage("te.jpg");// TEM 2 ARQUIVOS O TE E O TE2
+        gl = glad.getGL().getGL2();
+        
+        // Gera identificador de textura
+        idTextura = new int[10];
+        gl.glGenTextures(1, idTextura, 1);
 
-		// Especifica qual é a textura corrente pelo identificador 
-		gl.glBindTexture(GL.GL_TEXTURE_2D, idTextura[0]);	
+        // Especifica qual é a textura corrente pelo identificador 
+        gl.glBindTexture(GL.GL_TEXTURE_2D, idTextura[1]);	
 
-		// Envio da textura para OpenGL
-		gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, 3, largura, 
-				altura, 0, GL.GL_BGR, GL.GL_UNSIGNED_BYTE, buffer);
+        // Envio da textura para OpenGL
+        gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, 3, largura, altura, 
+                        0, GL.GL_BGR, GL.GL_UNSIGNED_BYTE, buffer);
 
-		// Define os filtros de magnificação e minificação 
-		gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MIN_FILTER,GL.GL_LINEAR);	
-		gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MAG_FILTER,GL.GL_LINEAR);
+        // Define os filtros de magnificação e minificação 
+        gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MIN_FILTER,GL.GL_LINEAR);	
+        gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MAG_FILTER,GL.GL_LINEAR);
     }
 
     @Override
@@ -199,6 +201,7 @@ public class Ambiente implements GLEventListener, KeyListener {
                     CD = false;
                     break;
                 case KeyEvent.VK_S:
+                    anguloAmb += 5;
                     break;
                 case KeyEvent.VK_A:
                     startE = true;
