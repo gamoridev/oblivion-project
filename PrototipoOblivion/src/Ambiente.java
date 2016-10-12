@@ -32,7 +32,7 @@ public class Ambiente implements GLEventListener, KeyListener {
     private float blocoX = 0f, blocoY = -1.5f, blocoZ = -28f;
     private float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
     private float auxY = 0, auxX = 0;
-    private boolean pula = true, startF, startD, startE;
+    private boolean pula = true, startF, startD, startE, CD = true;
     private boolean mAmbiente;
     private float ambX = 0f, ambY = 0f, ambZ = 0f;
     private int wView = 1000, yView = 750;
@@ -173,45 +173,49 @@ public class Ambiente implements GLEventListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_UP:
-                eixoY += 1;
-                break;
-            case KeyEvent.VK_DOWN:
-                eixoY -= 1;
-                break;
-            case KeyEvent.VK_LEFT:
-                eixoX += 1;
-                break;
-            case KeyEvent.VK_RIGHT:
-                eixoX -= 1;
-                break;
-            case KeyEvent.VK_H:
-                eixoZ += 1;
-                break;
-            case KeyEvent.VK_G:
-                eixoZ -= 1;
-                break;
-            case KeyEvent.VK_W:
-                startF = true;
-                mAmbiente = true;
-                break;
-            case KeyEvent.VK_S:
-                mAmbiente = true;
-                break;
-            case KeyEvent.VK_A:
-                startE = true;
-                mAmbiente = true;
-                break;
-            case KeyEvent.VK_D:
-                startD = true;
-                mAmbiente = true;
-                break;
-            case KeyEvent.VK_ESCAPE:
-                System.exit(0);
-                break;
-            default:
-                break;
+        if(CD){
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_UP:
+                    eixoY += 1;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    eixoY -= 1;
+                    break;
+                case KeyEvent.VK_LEFT:
+                    eixoX += 1;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    eixoX -= 1;
+                    break;
+                case KeyEvent.VK_H:
+                    eixoZ += 1;
+                    break;
+                case KeyEvent.VK_G:
+                    eixoZ -= 1;
+                    break;
+                case KeyEvent.VK_W:
+                    startF = true;
+                    mAmbiente = true;
+                    CD = false;
+                    break;
+                case KeyEvent.VK_S:
+                    break;
+                case KeyEvent.VK_A:
+                    startE = true;
+                    mAmbiente = true;
+                    CD = false;
+                    break;
+                case KeyEvent.VK_D:
+                    startD = true;
+                    mAmbiente = true;
+                    CD = false;
+                    break;
+                case KeyEvent.VK_ESCAPE:
+                    System.exit(0);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -263,6 +267,7 @@ public class Ambiente implements GLEventListener, KeyListener {
             if (blocoY == -1.5f){ 
                 pula = true;
                 startF = false;
+                CD = true;
             }
         }
     }
@@ -276,6 +281,7 @@ public class Ambiente implements GLEventListener, KeyListener {
             if (blocoY == -1.5f){ 
                 pula = true;
                 startD = false;
+                CD = true;
             }
         }
     }
@@ -289,6 +295,7 @@ public class Ambiente implements GLEventListener, KeyListener {
             if (blocoY == -1.5f){ 
                 pula = true;
                 startE = false;
+                CD = true;
             }
         }
     }
