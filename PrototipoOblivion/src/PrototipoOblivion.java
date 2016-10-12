@@ -35,7 +35,7 @@ public class PrototipoOblivion{
 //        canvas.addGLEventListener(personagem);
         canvas.addKeyListener(ambiente);
 
-        FPSAnimator animator = new FPSAnimator(canvas, 30);
+        FPSAnimator animator = new FPSAnimator(canvas, 60);
         animator.start();
     }    
 }

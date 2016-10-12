@@ -32,6 +32,9 @@ public class Ambiente implements GLEventListener, KeyListener {
     private float rquad = 0.0f, rquadAntigo = 0.0f;
     private float eixoX = 0f, eixoY = 0f, eixoZ= -34f;
     private float blocoX = 0f, blocoY = -1.5f, blocoZ = -28f;
+    private float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
+    private float auxY = 0;
+    private boolean pula = true, start;
     private float ambX = 0f, ambY = 0f, ambZ = 0f;
     private int wView = 1000, yView = 750;
     
@@ -115,8 +118,11 @@ public class Ambiente implements GLEventListener, KeyListener {
             glut.glutSolidCube(.8f);
         gl.glPopMatrix();
         
-        
         gl.glFlush();
+        if (start){
+            jump();
+            System.out.println(blocoY);
+        }
     }
     
     public void displayChanged(GLAutoDrawable gLDrawable,
@@ -179,6 +185,7 @@ public class Ambiente implements GLEventListener, KeyListener {
                 eixoZ -= 1;
                 break;
             case KeyEvent.VK_W:
+                start = true;
                 ambZ -= 2;
                 break;
             case KeyEvent.VK_S:
@@ -202,29 +209,44 @@ public class Ambiente implements GLEventListener, KeyListener {
     }
    
     public void loadImage(String fileName)
-	{
-		// Tenta carregar o arquivo		
-		imagem = null;
-		try {
-			imagem = ImageIO.read(new File("src\\" + fileName));
-			// Obtém largura e altura
-			largura  = imagem.getWidth();
-			altura = imagem.getHeight();
-		}
-		catch (IOException e) {
-			JOptionPane.showMessageDialog(null,"Erro na leitura do arquivo "+fileName);
-                }
+    {
+        // Tenta carregar o arquivo		
+        imagem = null;
+        try {
+                imagem = ImageIO.read(new File("src\\" + fileName));
+                // Obtém largura e altura
+                largura  = imagem.getWidth();
+                altura = imagem.getHeight();
+        }
+        catch (IOException e) {
+                JOptionPane.showMessageDialog(null,"Erro na leitura do arquivo "+fileName);
+        }
 
-		//Carrega a textura		
-		try {
-			InputStream stream = getClass().getResourceAsStream(fileName);
-			td = TextureIO.newTextureData(GLProfile.getDefault(), stream, false, "jpg");
-		}
-		catch (IOException exc) {
-			System.exit(1);
-		}
-		// ...e obtém um ByteBuffer a partir dela
-		buffer = (ByteBuffer) td.getBuffer();
-	}
-
+        //Carrega a textura		
+        try {
+                InputStream stream = getClass().getResourceAsStream(fileName);
+                td = TextureIO.newTextureData(GLProfile.getDefault(), stream, false, "jpg");
+        }
+        catch (IOException exc) {
+                System.exit(1);
+        }
+        // ...e obtém um ByteBuffer a partir dela
+        buffer = (ByteBuffer) td.getBuffer();
+    }
+    
+    private void pula(float velocidadeY){
+        blocoY += velocidadeY;
+    }
+    
+    private void jump(){
+        if (pula && blocoY <= auxY){
+            pula(0.1f);
+        } else {
+            pula = false;
+            pula(-0.1f);
+            if (blocoY == -1.5f){
+                pula = true;
+            }
+        }
+    }
 }
