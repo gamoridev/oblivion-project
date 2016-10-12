@@ -5,9 +5,7 @@ import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.glu.GLU;
-import com.jogamp.opengl.glu.GLUquadric;
 import com.jogamp.opengl.util.gl2.GLUT;
-import com.jogamp.opengl.util.texture.Texture;
 import com.jogamp.opengl.util.texture.TextureData;
 import com.jogamp.opengl.util.texture.TextureIO;
 import java.awt.event.KeyEvent;
@@ -33,8 +31,8 @@ public class Ambiente implements GLEventListener, KeyListener {
     private float eixoX = 0f, eixoY = 0f, eixoZ= -34f;
     private float blocoX = 0f, blocoY = -1.5f, blocoZ = -28f;
     private float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
-    private float auxY = 0;
-    private boolean pula = true, start;
+    private float auxY = 0, auxX = 0;
+    private boolean pula = true, startF, startD, startE;
     private float ambX = 0f, ambY = 0f, ambZ = 0f;
     private int wView = 1000, yView = 750;
     int cont = 0;
@@ -119,8 +117,14 @@ public class Ambiente implements GLEventListener, KeyListener {
             glut.glutSolidCube(.8f);
         gl.glPopMatrix();
         
-        if (start){
-            jump();
+        if (startF){
+            jumpFrente();
+        }
+        if (startD){
+            jumpDireita();
+        }
+        if (startE){
+            jumpEsquerda();
         }
         gl.glFlush();
     }
@@ -133,7 +137,7 @@ public class Ambiente implements GLEventListener, KeyListener {
     public void init(GLAutoDrawable glad) {
         //TUDO ISSO AQUI PRA TEXTURA DO AMBIENTE
         // Comandos de inicialização para textura
-		loadImage("te2.jpg");// TEM 2 ARQUIVOS O TE E O TE2
+		loadImage("te.jpg");// TEM 2 ARQUIVOS O TE E O TE2
                 gl = glad.getGL().getGL2();
 		// Gera identificador de textura
 		idTextura = new int[10];
@@ -185,18 +189,18 @@ public class Ambiente implements GLEventListener, KeyListener {
                 eixoZ -= 1;
                 break;
             case KeyEvent.VK_W:
-                start = true;
+                startF = true;
                 ambZ -= 2;
                 break;
             case KeyEvent.VK_S:
                 ambZ += 2;
                 break;
             case KeyEvent.VK_A:
-                blocoX += 1.2;
+                startE = true;
                 ambZ -= 2;
                 break;
             case KeyEvent.VK_D:
-                blocoX -= 1.2;
+                startD = true;
                 ambZ -= 2;
                 break;
             case KeyEvent.VK_ESCAPE:
@@ -237,19 +241,46 @@ public class Ambiente implements GLEventListener, KeyListener {
         buffer = (ByteBuffer) td.getBuffer();
     }
     
-    private void pula(float velocidadeY){
+    private void pula(float velocidadeY, float velocidadeX){
         blocoY += velocidadeY;
+        blocoX += velocidadeX;
     }
     
-    private void jump(){
+    private void jumpFrente(){
         if (pula && blocoY <= auxY){
-            pula(.1f);
+            pula(.1f,0);
         } else {
             pula = false;
-            pula(-.1f);
+            pula(-.1f,0);
             if (blocoY == -1.5f){ 
                 pula = true;
-                start = false;
+                startF = false;
+            }
+        }
+    }
+    
+    private void jumpDireita(){
+        if (pula && blocoY <= auxY){
+            pula(.1f,-.08f);
+        } else {
+            pula = false;
+            pula(-.1f,0);
+            if (blocoY == -1.5f){ 
+                pula = true;
+                startD = false;
+            }
+        }
+    }
+
+    private void jumpEsquerda(){
+        if (pula && blocoY <= auxY){
+            pula(.1f,.08f);
+        } else {
+            pula = false;
+            pula(-.1f,0);
+            if (blocoY == -1.5f){ 
+                pula = true;
+                startE = false;
             }
         }
     }
