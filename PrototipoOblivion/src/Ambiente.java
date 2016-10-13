@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import javax.swing.event.MenuKeyEvent;
 
 /*
     PARA MOVIMENTAR O PERSONAGEM SE USA O W, A e D
@@ -32,11 +33,11 @@ public class Ambiente implements GLEventListener, KeyListener {
     private float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
     private float auxY = 0, auxX = 0;
     private boolean pula = true, startF, startD, startE, CD = true;
-    private boolean mAmbiente;
+    private boolean giroEsquerda = false;
     private float ambX = 0f, ambY = 0f, ambZ = 0f;
-    private float anguloAmb = 0;
+    private float anguloAmb = 0, anguloBloco =0 ;
     private int wView = 1000, yView = 750;
-    int cont = 0;
+    int contSaltos = 0;
     
     //VARIAVEIS TEXTURA
     private int largura, altura;
@@ -66,59 +67,62 @@ public class Ambiente implements GLEventListener, KeyListener {
         //Projeção Perspectiva do objeto
 //        gl.glFrustum(-1, 1, -1, 1, 0.1, 100.0);
         glu.gluPerspective(50f, 1, 0.1, 100);
-
+        
         //Transformação de modelo
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity(); 
         glu.gluLookAt(eixoX, eixoY, eixoZ, 0, 0, -0.1, 0, 1, 0);
-
         
-        //Ambiente
-        gl.glEnable(GL.GL_TEXTURE_2D);
         gl.glPushMatrix();
             gl.glRotatef(anguloAmb,0f, 0f, 1f);
-            gl.glTranslatef(ambX, ambY, ambZ);
-            gl.glBegin (GL2.GL_QUADS);
+            //Ambiente
+            gl.glEnable(GL.GL_TEXTURE_2D);
+            gl.glPushMatrix();
 
-            //Parede Direita
-            gl.glColor3f(1f,1f,1f);
-            gl.glTexCoord2f(0.0f, 0.0f);    gl.glVertex3f(-2f, 2f, 30f);
-            gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, 2f, -30f);
-            gl.glTexCoord2f(-3.0f, -3.0f);    gl.glVertex3f(-2f, -2f, -30f);
-            gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(-2f, -2f, 30f);
+                gl.glTranslatef(ambX, ambY, ambZ);
+                gl.glBegin (GL2.GL_QUADS);
+
+                //Parede Direita
+                gl.glColor3f(1f,1f,1f);
+                gl.glTexCoord2f(0.0f, 0.0f);    gl.glVertex3f(-2f, 2f, 30f);
+                gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, 2f, -30f);
+                gl.glTexCoord2f(-3.0f, -3.0f);    gl.glVertex3f(-2f, -2f, -30f);
+                gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(-2f, -2f, 30f);
+
+                //Parede esquerda
+                gl.glColor3f(1f,1f,1f);
+                gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(2f, 2f, 30f);
+                gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(2f, 2f, -30f);
+                gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(2f, -2f, -30f);
+                gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(2f, -2f, 30f);
+
+                //Teto
+                gl.glColor3f(1f,1f,1f);
+                gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(-2f, 2f, 30f);
+                gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, 2f, -30f);
+                gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(2f, 2f, -30f);
+                gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(2f, 2f, 30f);
+
+                //Chão
+                gl.glColor3f(1f,1f,1f);
+                gl.glTexCoord2f(0.0f, 0.0f);    gl.glVertex3f(-2f, -2f, 30f);
+                gl.glTexCoord2f(-3.0f, 0.0f);   gl.glVertex3f(-2f, -2f, -30f);
+                gl.glTexCoord2f(-3.0f, -3.0f);  gl.glVertex3f(2f, -2f, -30f);
+                gl.glTexCoord2f(0.0f, -3.0f);   gl.glVertex3f(2f, -2f, 30f);
+
+                gl.glEnd();
+            gl.glPopMatrix();
+            gl.glDisable(GL.GL_TEXTURE_2D);	
+
+            //Personagem
             
-            //Parede esquerda
-            gl.glColor3f(1f,1f,1f);
-            gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(2f, 2f, 30f);
-            gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(2f, 2f, -30f);
-            gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(2f, -2f, -30f);
-            gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(2f, -2f, 30f);
-
-            //Teto
-            gl.glColor3f(1f,1f,1f);
-            gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(-2f, 2f, 30f);
-            gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, 2f, -30f);
-            gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(2f, 2f, -30f);
-            gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(2f, 2f, 30f);
-
-            //Chão
-            gl.glColor3f(1f,1f,1f);
-            gl.glTexCoord2f(0.0f, 0.0f);    gl.glVertex3f(-2f, -2f, 30f);
-            gl.glTexCoord2f(-3.0f, 0.0f);   gl.glVertex3f(-2f, -2f, -30f);
-            gl.glTexCoord2f(-3.0f, -3.0f);  gl.glVertex3f(2f, -2f, -30f);
-            gl.glTexCoord2f(0.0f, -3.0f);   gl.glVertex3f(2f, -2f, 30f);
-
-            gl.glEnd();
+            gl.glPushMatrix();
+                gl.glTranslatef(blocoX, blocoY, blocoZ);
+                gl.glColor3f(1f, 0f, 0f);
+                gl.glRotatef(anguloBloco, 0f, 0f, 1f);
+                glut.glutSolidCube(.8f);
+            gl.glPopMatrix();
         gl.glPopMatrix();
-        gl.glDisable(GL.GL_TEXTURE_2D);	
-        
-        //Personagem
-        gl.glPushMatrix();
-            gl.glTranslatef(blocoX, blocoY, blocoZ);
-            gl.glColor3f(1f, 0f, 0f);
-            glut.glutSolidCube(.8f);
-        gl.glPopMatrix();
-        
         if (startF){
             jumpFrente();
             moveAmbienteFrente();
@@ -130,6 +134,9 @@ public class Ambiente implements GLEventListener, KeyListener {
         if (startE){
             jumpEsquerda();
             moveAmbienteFrente();
+        }
+        if(giroEsquerda){
+            giraAmbEsquerda();
         }
         gl.glFlush();
     }
@@ -197,25 +204,38 @@ public class Ambiente implements GLEventListener, KeyListener {
                     break;
                 case KeyEvent.VK_W:
                     startF = true;
-                    mAmbiente = true;
                     CD = false;
                     break;
                 case KeyEvent.VK_S:
-                    anguloAmb += 5;
+                    anguloAmb -= 5;
                     break;
                 case KeyEvent.VK_A:
-                    startE = true;
-                    mAmbiente = true;
-                    CD = false;
+                    if(blocoX > 1.1f && blocoX < 1.3f ){
+                        CD = false;
+                        giroEsquerda =true;
+                    }else{
+                        startE = true;
+                        CD = false;
+                    }
                     break;
                 case KeyEvent.VK_D:
                     startD = true;
-                    mAmbiente = true;
                     CD = false;
                     break;
                 case KeyEvent.VK_ESCAPE:
                     System.exit(0);
                     break;
+                case KeyEvent.VK_F:
+                    mostraCordPersonagem();
+                    mostraRotacaoAmbiente();
+                    break;
+                case KeyEvent.VK_B:
+                    giraAmbEsquerda();
+                    break;
+                case KeyEvent.VK_U:
+                    anguloBloco += 5f;
+                    break;
+                    
                 default:
                     break;
             }
@@ -277,10 +297,10 @@ public class Ambiente implements GLEventListener, KeyListener {
     
     private void jumpDireita(){
         if (pula && blocoY <= auxY){
-            pula(.1f,-.04f);
+            pula(.1f,-.04000f);
         } else {
             pula = false;
-            pula(-.1f,-.04f);
+            pula(-.1f,-.04000f);
             if (blocoY == -1.5f){ 
                 pula = true;
                 startD = false;
@@ -301,5 +321,28 @@ public class Ambiente implements GLEventListener, KeyListener {
                 CD = true;
             }
         }
+    }
+    private void mostraCordPersonagem(){
+        System.out.printf("Personagem \nX: %f\nY: %f\nZ: %f\n anguloZ: %f\n"
+                        ,blocoX, blocoY, blocoZ, anguloBloco);
+    }
+    
+    private void mostraRotacaoAmbiente(){
+        System.out.printf("Ambiente\nZ: %f\n", anguloAmb);
+    }
+    private void giraAmbEsquerda(){
+        if(anguloAmb == -90.000000f){
+            animacaoQueda();
+            CD = true;
+            giroEsquerda = false;
+        }else
+        {
+           anguloAmb -= 5;
+        }
+    }
+    private void animacaoQueda() {
+        anguloBloco += 180f;
+        blocoX += .4f;
+        blocoY += .4f;
     }
 }
