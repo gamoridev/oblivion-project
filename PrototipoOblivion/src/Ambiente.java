@@ -33,7 +33,7 @@ public class Ambiente implements GLEventListener, KeyListener {
     private float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
     private float auxY = 0, auxX = 0;
     private boolean pula = true, startF, startD, startE, CD = true;
-    private boolean giroEsquerda = false;
+    private boolean giroEsquerda = false, giroDireita = false;
     private float ambX = 0f, ambY = 0f, ambZ = 0f;
     private float anguloAmb = 0, anguloBloco =0 ;
     private int wView = 1000, yView = 750;
@@ -84,9 +84,9 @@ public class Ambiente implements GLEventListener, KeyListener {
 
                 //Parede Direita
                 gl.glColor3f(1f,1f,1f);
-                gl.glTexCoord2f(0.0f, 0.0f);    gl.glVertex3f(-2f, 2f, 30f);
+                gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(-2f, 2f, 30f);
                 gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, 2f, -30f);
-                gl.glTexCoord2f(-3.0f, -3.0f);    gl.glVertex3f(-2f, -2f, -30f);
+                gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(-2f, -2f, -30f);
                 gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(-2f, -2f, 30f);
 
                 //Parede esquerda
@@ -105,10 +105,10 @@ public class Ambiente implements GLEventListener, KeyListener {
 
                 //Chão
                 gl.glColor3f(1f,1f,1f);
-                gl.glTexCoord2f(0.0f, 0.0f);    gl.glVertex3f(-2f, -2f, 30f);
-                gl.glTexCoord2f(-3.0f, 0.0f);   gl.glVertex3f(-2f, -2f, -30f);
-                gl.glTexCoord2f(-3.0f, -3.0f);  gl.glVertex3f(2f, -2f, -30f);
-                gl.glTexCoord2f(0.0f, -3.0f);   gl.glVertex3f(2f, -2f, 30f);
+                gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(-2f, -2f, 30f);
+                gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, -2f, -30f);
+                gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(2f, -2f, -30f);
+                gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(2f, -2f, 30f);
 
                 gl.glEnd();
             gl.glPopMatrix();
@@ -135,8 +135,11 @@ public class Ambiente implements GLEventListener, KeyListener {
             jumpEsquerda();
             moveAmbienteFrente();
         }
-        if(giroEsquerda){
+        if (giroEsquerda){
             giraAmbEsquerda();
+        }
+        if (giroDireita){
+            giraAmbDireita();
         }
         gl.glFlush();
     }
@@ -210,6 +213,7 @@ public class Ambiente implements GLEventListener, KeyListener {
                     anguloAmb -= 5;
                     break;
                 case KeyEvent.VK_A:
+                    System.out.println(blocoX);
                     if(blocoX > 1.1f && blocoX < 1.3f ){
                         CD = false;
                         giroEsquerda =true;
@@ -219,6 +223,14 @@ public class Ambiente implements GLEventListener, KeyListener {
                     }
                     break;
                 case KeyEvent.VK_D:
+                    System.out.println(blocoX);
+                    if(blocoX > 1.1f && blocoX < 1.3f ){
+                        CD = false;
+                        giroDireita = true;
+                    }else{
+                        startD = true;
+                        CD = false;
+                    }
                     startD = true;
                     CD = false;
                     break;
@@ -335,6 +347,16 @@ public class Ambiente implements GLEventListener, KeyListener {
             animacaoQueda();
             CD = true;
             giroEsquerda = false;
+        }else
+        {
+           anguloAmb -= 5;
+        }
+    }
+     private void giraAmbDireita(){
+        if(anguloAmb == 90.000000f){
+            animacaoQueda();
+            CD = true;
+            giroDireita = false;
         }else
         {
            anguloAmb -= 5;
