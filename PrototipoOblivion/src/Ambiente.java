@@ -224,15 +224,13 @@ public class Ambiente implements GLEventListener, KeyListener {
                     break;
                 case KeyEvent.VK_D:
                     System.out.println(blocoX);
-                    if(blocoX > 1.1f && blocoX < 1.3f ){
+                    if(blocoX < -1.1f && blocoX > -1.3f ){
                         CD = false;
                         giroDireita = true;
                     }else{
                         startD = true;
                         CD = false;
                     }
-                    startD = true;
-                    CD = false;
                     break;
                 case KeyEvent.VK_ESCAPE:
                     System.exit(0);
@@ -359,7 +357,7 @@ public class Ambiente implements GLEventListener, KeyListener {
             giroDireita = false;
         }else
         {
-           anguloAmb -= 5;
+           anguloAmb += 5;
         }
     }
     private void animacaoQueda() {
