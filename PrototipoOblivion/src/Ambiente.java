@@ -141,6 +141,7 @@ public class Ambiente implements GLEventListener, KeyListener {
         if (giroDireita){
             giraAmbDireita();
         }
+        System.out.printf("Bloco X:%.2f  -  Bloco Y:%.2f  -  Bloco Z:%.2f\n", blocoX, blocoY, blocoZ);
         gl.glFlush();
     }
     
@@ -213,7 +214,6 @@ public class Ambiente implements GLEventListener, KeyListener {
                     anguloAmb -= 5;
                     break;
                 case KeyEvent.VK_A:
-                    System.out.println(blocoX);
                     if(blocoX > 1.1f && blocoX < 1.3f ){
                         CD = false;
                         giroEsquerda =true;
@@ -223,7 +223,6 @@ public class Ambiente implements GLEventListener, KeyListener {
                     }
                     break;
                 case KeyEvent.VK_D:
-                    System.out.println(blocoX);
                     if(blocoX < -1.1f && blocoX > -1.3f ){
                         CD = false;
                         giroDireita = true;
