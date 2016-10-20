@@ -28,12 +28,10 @@ public class PrototipoOblivion{
             }
         });
 
-        Personagem personagem = new Personagem();
-        Ambiente ambiente = new Ambiente();
-        
-        canvas.addGLEventListener(ambiente);
+        Renderiza render = new Renderiza();
+        canvas.addGLEventListener(render);
 //        canvas.addGLEventListener(personagem);
-        canvas.addKeyListener(ambiente);
+        canvas.addKeyListener(render);
 
         FPSAnimator animator = new FPSAnimator(canvas, 60);
         animator.start();

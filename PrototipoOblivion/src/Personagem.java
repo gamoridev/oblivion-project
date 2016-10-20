@@ -1,71 +1,40 @@
-
-import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
-import com.jogamp.opengl.GLAutoDrawable;
-import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.util.gl2.GLUT;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class Personagem implements GLEventListener, KeyListener {
-
-    private GLUT glut = new GLUT();
-
-    /**
-     *
-     * @param gLDrawable
-     * Contém as características do objeto, atualizando-o a cada frame.
-     */
-    @Override
-    public void display(GLAutoDrawable gLDrawable) {
-        final GL2 gl = gLDrawable.getGL().getGL2();
-        gl.glClear(GL.GL_COLOR_BUFFER_BIT);
-        
+public class Personagem {
+    private float personagemX = 0f, personagemY = -1.5f, personagemZ = -28f;
+    private float anguloBloco =0 ;
+    public void mostraPersonagem(GLUT glut, GL2 gl)
+    {
         gl.glPushMatrix();
-            gl.glColor3f(1f, 0.411765f, 0.705882f);
-            glut.glutSolidCube(.20f);
+            gl.glTranslatef(personagemX, personagemY, personagemZ);
+            gl.glColor3f(1f, 0f, 0f);
+            gl.glRotatef(anguloBloco, 0f, 0f, 1f);
+            glut.glutSolidCube(.8f);
         gl.glPopMatrix();
-        
-        gl.glFlush();
     }
-
-    public void displayChanged(GLAutoDrawable gLDrawable,
-            boolean modeChanged, boolean deviceChanged) {
-
+    public float getPersonagemX ()
+    {
+        return personagemX;
     }
-
-    @Override
-    public void init(GLAutoDrawable drawable) {
-        GL2 gl = drawable.getGL().getGL2();
-        glut = new GLUT();
-        gl.glClearColor(.0f, .0f, 0f, 0f);
+    public float getPersonagemY ()
+    {
+        return personagemY;
     }
-
-
-    @Override
-    public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width,
-            int height) {
+    public float getPersonagemZ()
+    {
+        return personagemZ;
     }
-
-    @Override
-    public void dispose(GLAutoDrawable arg0) {
-        // TODO Auto-generated method stub		
+    public void setPersonagemX (float x)
+    {
+        personagemX = x;
     }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        
+    public void setPersonagemY (float x)
+    {
+        personagemY = x;
     }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub		
+    public void setPersonagemZ(float x)
+    {
+        personagemZ = x;
     }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
 }
