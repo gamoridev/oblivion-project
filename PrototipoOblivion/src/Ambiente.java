@@ -2,7 +2,7 @@ import com.jogamp.opengl.GL2;
 
 public class Ambiente 
 {
-    private float ambX = 0f, ambY = 0f, ambZ = 0f;
+    private float anguloAmb = 0f, ambX = 0f, ambY = 0f, ambZ = 0f;
     
     public void mostraAmbiente(GL2 gl)
     {
@@ -41,6 +41,9 @@ public class Ambiente
         gl.glPopMatrix();
     }
     
+    public void setAnguloAmb(float x) {
+        anguloAmb = x;
+    }
     public void setAmbienteX (float x){
         ambX = x;
     }
@@ -50,7 +53,9 @@ public class Ambiente
     public void setAmbienteZ (float x){
         ambZ = x;
     }
-    
+    public float getAnguloAmb() {
+        return anguloAmb;
+    }
     public float getAmbienteX (){
         return ambX;
     }
@@ -59,5 +64,8 @@ public class Ambiente
     }
     public float getAmbienteZ (){
         return ambZ;
+    }
+    public void mostraRotacaoAmbiente(){
+        System.out.printf("Ambiente\nÂngulo: %f\nEixo Z: %f", anguloAmb, ambZ);
     }
 }

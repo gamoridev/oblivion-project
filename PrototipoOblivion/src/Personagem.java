@@ -37,4 +37,9 @@ public class Personagem {
     {
         personagemZ = x;
     }
+    
+    public void mostraCordPersonagem(){
+        System.out.printf("Personagem \nX: %f\nY: %f\nZ: %f\n anguloZ: %f\n"
+              ,personagemX, personagemY, personagemZ, anguloBloco);
+    }
 }
