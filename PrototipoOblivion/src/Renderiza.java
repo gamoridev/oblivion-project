@@ -6,6 +6,7 @@ import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.gl2.GLUT;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 public class Renderiza  implements GLEventListener, KeyListener
 {
@@ -23,11 +24,12 @@ public class Renderiza  implements GLEventListener, KeyListener
 //    private float ambiente.getAnguloAmb() = 0, anguloBloco = 0 ;
     private int wView = 1000, yView = 750;
     int contSaltos = 0;
+    float variavelBOA;
        
     //VARIAVEIS TEXTURA
     private int idTextura[];
     private GL2 gl;
-    
+    Random aleatorio = new Random();
 
     @Override
     public void display(GLAutoDrawable gLDrawable) {
@@ -42,6 +44,9 @@ public class Renderiza  implements GLEventListener, KeyListener
         gl.glLoadIdentity(); 
         glu.gluLookAt(eixoX, eixoY, eixoZ, 0, 0, -0.1, 0, 1, 0);
         
+        
+        setaRotacao();
+        contSaltos ++;
         
         gl.glPushMatrix();
             gl.glRotatef(ambiente.getAnguloAmb(),0f, 0f, 1f);
@@ -70,6 +75,7 @@ public class Renderiza  implements GLEventListener, KeyListener
         if (giroDireita){
             giraAmbDireita();
         }
+        personagem.setRotacao(personagem.getRotacao()+ variavelBOA);
         gl.glFlush();
     }
     
@@ -232,7 +238,6 @@ public class Renderiza  implements GLEventListener, KeyListener
     }
     private void giraAmbEsquerda(){
         if(ambiente.getAnguloAmb() == -90.000000f){
-            animacaoQueda();
             CD = true;
             giroEsquerda = false;
         }else
@@ -242,17 +247,63 @@ public class Renderiza  implements GLEventListener, KeyListener
     }
     private void giraAmbDireita(){
         if(ambiente.getAnguloAmb() == 90.000000f){
-            animacaoQueda();
             CD = true;
             giroDireita = false;
         }else
         {
-           ambiente.setAnguloAmb(ambiente.getAnguloAmb()-5);
+           ambiente.setAnguloAmb(ambiente.getAnguloAmb()+5);
         }
     }
-    private void animacaoQueda() {
-//        anguloBloco += 180f;
-        personagem.setPersonagemX(personagem.getPersonagemX()+ .4f);
-        personagem.setPersonagemY(personagem.getPersonagemY()+ .4f);
+
+    private void setaRotacao() {
+        if(contSaltos == 30)
+        {
+            contSaltos = 0;
+            int x = aleatorio.nextInt(7);
+            
+            if( x == 0)
+            {
+                variavelBOA = 5;
+                personagem.setRotaX(1);
+                personagem.setRotaY(0);
+                personagem.setRotaZ(0);
+            }
+            if( x == 1)
+            {
+                variavelBOA = 5;
+                personagem.setRotaX(0);
+                personagem.setRotaY(1);
+                personagem.setRotaZ(0);
+            }
+            if( x == 2)
+            {
+                variavelBOA = 5;
+                personagem.setRotaX(0);
+                personagem.setRotaY(0);
+                personagem.setRotaZ(1);
+            } 
+            if( x == 0)
+            {
+                variavelBOA = -5;
+                personagem.setRotaX(1);
+                personagem.setRotaY(0);
+                personagem.setRotaZ(0);
+            }
+            if( x == 1)
+            {
+                variavelBOA = -5;
+                personagem.setRotaX(0);
+                personagem.setRotaY(1);
+                personagem.setRotaZ(0);
+            }
+            if( x == 2)
+            {
+                variavelBOA = -5;
+                personagem.setRotaX(0);
+                personagem.setRotaY(0);
+                personagem.setRotaZ(1);
+            }
+        }
+        
     }
 }
