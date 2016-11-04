@@ -304,6 +304,13 @@ public class Renderiza  implements GLEventListener, KeyListener
                 personagem.setRotaZ(1);
             }
         }
-        
     }
+    
+//    private void setaPosicao(){
+//        switch(personagem.getPosicao()){
+//            case (1,2):
+//                
+//        }
+//    }
+    
 }

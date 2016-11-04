@@ -4,6 +4,7 @@ import com.jogamp.opengl.util.gl2.GLUT;
 public class Personagem {
     private float personagemX = 0f, personagemY = -1.5f, personagemZ = -28f;
     private float rotacao, rotaX, rotaY, rotaZ;
+    private int posicao;
     public void mostraPersonagem(GLUT glut, GL2 gl)
     {
         gl.glPushMatrix();
@@ -198,9 +199,17 @@ public class Personagem {
     {
         personagemZ = x;
     }
+
+    public int getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(int posicao) {
+        this.posicao = posicao;
+    }
     
     public void mostraCordPersonagem(){
-        System.out.printf("Personagem \nX: %f\nY: %f\nZ: %f"
-              ,personagemX, personagemY, personagemZ);
+        System.out.printf("\nPersonagem \nX: %f\nY: %f\nZ: %f\nPosição: %d"
+              ,personagemX, personagemY, personagemZ, posicao);
     }
 }
