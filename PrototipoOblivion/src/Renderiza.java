@@ -13,6 +13,7 @@ public class Renderiza  implements GLEventListener, KeyListener
     Personagem personagem = new Personagem();
     Ambiente ambiente = new Ambiente();
     Imagem imagem = new Imagem();
+    Bloco bloco =  new Bloco();
     private final GLUT glut = new GLUT();
     private final GLU glu = new GLU();
     private float rquad = 0.0f, rquadAntigo = 0.0f;
@@ -42,7 +43,7 @@ public class Renderiza  implements GLEventListener, KeyListener
         glu.gluPerspective(50f, 1, 0.1, 100);
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity(); 
-        glu.gluLookAt(eixoX, eixoY, eixoZ, 0, 0, -0.1, 0, 1, 0);
+        glu.gluLookAt(eixoX, eixoY, eixoZ, 0, 0, 30, 0, 1, 0);
         
         
         setaRotacao();
@@ -50,10 +51,28 @@ public class Renderiza  implements GLEventListener, KeyListener
         
         gl.glPushMatrix();
             gl.glRotatef(ambiente.getAnguloAmb(),0f, 0f, 1f);
-            gl.glEnable(GL.GL_TEXTURE_2D);          
+//            gl.glEnable(GL.GL_TEXTURE_2D);          
                 ambiente.mostraAmbiente(gl);      
-            gl.glDisable(GL.GL_TEXTURE_2D);	
-            
+////            gl.glDisable(GL.GL_TEXTURE_2D);	
+//            gl.glPushMatrix();
+//                gl.glTranslatef(0f, -2f, -28f);
+//                gl.glColor3f(1f, 1f, 1f);
+//                gl.glScalef(1f, .1f,1f);
+//                glut.glutSolidCube(1.3f);	
+//            gl.glPopMatrix();
+                
+            bloco.mostraBlocos(glut, gl, 21.5f);
+            bloco.mostraBlocos(glut, gl, 17f);
+            bloco.mostraBlocos(glut, gl, 12.5f);
+            bloco.mostraBlocos(glut, gl, 8f);   
+            bloco.mostraBlocos(glut, gl, 3.5f);
+            bloco.mostraBlocos(glut, gl, -1f);
+            bloco.mostraBlocos(glut, gl, -5.5f);
+            bloco.mostraBlocos(glut, gl, -10f);
+            bloco.mostraBlocos(glut, gl, -14.5f);
+            bloco.mostraBlocos(glut, gl, -19f);
+            bloco.mostraBlocos(glut, gl, -23.5f);
+            bloco.mostraBlocos(glut, gl, -28f);
             personagem.mostraPersonagem(glut, gl);
         gl.glPopMatrix();
         
@@ -85,6 +104,19 @@ public class Renderiza  implements GLEventListener, KeyListener
 
     @Override
     public void init(GLAutoDrawable glad) {
+        bloco.setVetor0(1);
+        bloco.setVetor1(1);
+        bloco.setVetor2(1);
+        bloco.setVetor3(1);
+        bloco.setVetor4(1);
+        bloco.setVetor5(1);
+        bloco.setVetor6(1);
+        bloco.setVetor7(1);
+        bloco.setVetor8(1);
+        bloco.setVetor9(1);
+        bloco.setVetor10(1);
+        bloco.setVetor11(1);
+        
         // TUDO ISSO AQUI PRA TEXTURA DO AMBIENTE
         // Comandos de inicialização para textura
         imagem.loadImage("te.jpg");// TEM 2 ARQUIVOS O TE E O TE2
@@ -169,13 +201,24 @@ public class Renderiza  implements GLEventListener, KeyListener
                     System.exit(0);
                     break;
                 case KeyEvent.VK_F:
-                    personagem.mostraCordPersonagem();
+                        bloco.setVetor2(0);
                     break;
                 case KeyEvent.VK_J:
-                    ambiente.mostraRotacaoAmbiente();
+                        bloco.setVetor0(0);
                     break;
                 case KeyEvent.VK_B:
-                    giraAmbEsquerda();
+                        bloco.setVetor0(0);
+                        bloco.setVetor1(0);
+                        bloco.setVetor2(0);
+                        bloco.setVetor3(0);
+                        bloco.setVetor4(0);
+                        bloco.setVetor5(0);
+                        bloco.setVetor6(0);
+                        bloco.setVetor7(0);
+                        bloco.setVetor8(0);
+                        bloco.setVetor9(0);
+                        bloco.setVetor10(0);
+                        bloco.setVetor11(0);
                     break;
                 default:
                     break;
@@ -185,10 +228,37 @@ public class Renderiza  implements GLEventListener, KeyListener
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if(CD){
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_F:
+                        bloco.setVetor2(1);
+                    break;
+                case KeyEvent.VK_J:
+                        bloco.setVetor0(1);
+                    break;
+                case KeyEvent.VK_B:
+                    bloco.setVetor0(1);
+                    bloco.setVetor1(1);
+                    bloco.setVetor2(1);
+                    bloco.setVetor3(1);
+                    bloco.setVetor4(1);
+                    bloco.setVetor5(1);
+                    bloco.setVetor6(1);
+                    bloco.setVetor7(1);
+                    bloco.setVetor8(1);
+                    bloco.setVetor9(1);
+                    bloco.setVetor10(1);
+                    bloco.setVetor11(1);
+                    break;
+            default:
+                    break;
+            }
+        }
     }
    
     private void moveAmbienteFrente(){
-        ambiente.setAmbienteZ(ambiente.getAmbienteZ() - .15f);
+        personagem.setPersonagemZ(personagem.getPersonagemZ() + .15f);
+        eixoZ += .15f;
     }
     
     private void pula(float velocidadeY, float velocidadeX){

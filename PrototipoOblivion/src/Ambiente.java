@@ -11,28 +11,28 @@ public class Ambiente
         
             gl.glBegin (GL2.GL_QUADS);
                 //Parede Direita
-                gl.glColor3f(1f,1f,1f);
+                gl.glColor3f(0f,0f,0f);
                 gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(-2f, 2f, 30f);
                 gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, 2f, -30f);
                 gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(-2f, -2f, -30f);
                 gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(-2f, -2f, 30f);
 
                 //Parede esquerda
-                gl.glColor3f(1f,1f,1f);
+//                gl.glColor3f(0f,1f,1f);
                 gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(2f, 2f, 30f);
                 gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(2f, 2f, -30f);
                 gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(2f, -2f, -30f);
                 gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(2f, -2f, 30f);
 
                 //Teto
-                gl.glColor3f(1f,1f,1f);
+//                gl.glColor3f(1f,1f,0f);
                 gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(-2f, 2f, 30f);
                 gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, 2f, -30f);
                 gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(2f, 2f, -30f);
                 gl.glTexCoord2f(0.0f, -3.0f);    gl.glVertex3f(2f, 2f, 30f);
 
                 //Chão
-                gl.glColor3f(1f,1f,1f);
+//                gl.glColor3f(1f,0f,1f);
                 gl.glTexCoord2f(0.0f, 0.0f);     gl.glVertex3f(-2f, -2f, 30f);
                 gl.glTexCoord2f(-3.0f, 0.0f);    gl.glVertex3f(-2f, -2f, -30f);
                 gl.glTexCoord2f(-3.0f, -3.0f);   gl.glVertex3f(2f, -2f, -30f);
