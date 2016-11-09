@@ -13,6 +13,7 @@ public class Renderiza  implements GLEventListener, KeyListener
     Personagem personagem = new Personagem();
     Ambiente ambiente = new Ambiente();
     Imagem imagem = new Imagem();
+
     Bloco fileira1 =  new Bloco();
     Bloco fileira2 =  new Bloco();
     Bloco fileira3 =  new Bloco();
@@ -38,12 +39,15 @@ public class Renderiza  implements GLEventListener, KeyListener
     private int wView = 1000, yView = 750;
     int contSaltos = 0;
     float variavelBOA;
+    float piscaBloco = 0;
+    boolean teste;
        
     //VARIAVEIS TEXTURA
     private int idTextura[];
     private GL2 gl;
     Random aleatorio = new Random();
-
+    
+    
     @Override
     public void display(GLAutoDrawable gLDrawable) {
         final GL2 gl = gLDrawable.getGL().getGL2();
@@ -73,18 +77,18 @@ public class Renderiza  implements GLEventListener, KeyListener
 //                glut.glutSolidCube(1.3f);	
 //            gl.glPopMatrix();
                 
-            fileira1.mostraBlocos(glut, gl, 21.5f);
-            fileira2.mostraBlocos(glut, gl, 17f);
-            fileira3.mostraBlocos(glut, gl, 12.5f);
-            fileira4.mostraBlocos(glut, gl, 8f);   
-            fileira5.mostraBlocos(glut, gl, 3.5f);
-            fileira6.mostraBlocos(glut, gl, -1f);
-            fileira7.mostraBlocos(glut, gl, -5.5f);
-            fileira8.mostraBlocos(glut, gl, -10f);
-            fileira9.mostraBlocos(glut, gl, -14.5f);
-            fileira10.mostraBlocos(glut, gl, -19f);
-            fileira11.mostraBlocos(glut, gl, -23.5f);
-            fileira12.mostraBlocos(glut, gl, -28f);
+            fileira12.mostraBlocos(glut, gl, 21.5f);
+            fileira11.mostraBlocos(glut, gl, 17f);
+            fileira10.mostraBlocos(glut, gl, 12.5f);
+            fileira9.mostraBlocos(glut, gl, 8f);   
+            fileira8.mostraBlocos(glut, gl, 3.5f);
+            fileira7.mostraBlocos(glut, gl, -1f);
+            fileira6.mostraBlocos(glut, gl, -5.5f);
+            fileira5.mostraBlocos(glut, gl, -10f);
+            fileira4.mostraBlocos(glut, gl, -14.5f);
+            fileira3.mostraBlocos(glut, gl, -19f);
+            fileira2.mostraBlocos(glut, gl, -23.5f);
+            fileira1.mostraBlocos(glut, gl, -28f);
             personagem.mostraPersonagem(glut, gl);
         gl.glPopMatrix();
         
@@ -107,6 +111,14 @@ public class Renderiza  implements GLEventListener, KeyListener
             giraAmbDireita();
         }
         personagem.setRotacao(personagem.getRotacao()+ variavelBOA);
+        if (piscaBloco >= 0 && teste == false){
+            fileira2.setVetor0(piscaBloco);
+            piscaBloco += 0.02;
+            if (piscaBloco >= 1){
+                teste = true;
+            }
+        } 
+        System.out.println(piscaBloco);
         gl.glFlush();
     }
     
@@ -116,20 +128,14 @@ public class Renderiza  implements GLEventListener, KeyListener
 
     @Override
     public void init(GLAutoDrawable glad) {
+        /*
+        * Vetores da fileira do respawn.
+        */
         fileira1.setVetor0(1);
-        fileira2.setVetor1(1);
-        fileira3.setVetor2(1);
-        fileira4.setVetor3(1);
-        fileira5.setVetor4(1);
-        fileira6.setVetor5(1);
-        fileira7.setVetor6(1);
-        fileira8.setVetor7(1);
-        fileira9.setVetor8(1);
-        fileira10.setVetor9(1);
-        fileira11.setVetor10(1);
-        fileira12.setVetor0(1);
-        //fileira12.setVetor1(1);
-        fileira12.setVetor11(1);
+        fileira1.setVetor1(0);
+        fileira1.setVetor2(1);
+        
+        
         
         // TUDO ISSO AQUI PRA TEXTURA DO AMBIENTE
         // Comandos de inicialização para textura
@@ -389,12 +395,5 @@ public class Renderiza  implements GLEventListener, KeyListener
             }
         }
     }
-    
-//    private void setaPosicao(){
-//        switch(personagem.getPosicao()){
-//            case (1,2):
-//                
-//        }
-//    }
     
 }
