@@ -13,7 +13,19 @@ public class Renderiza  implements GLEventListener, KeyListener
     Personagem personagem = new Personagem();
     Ambiente ambiente = new Ambiente();
     Imagem imagem = new Imagem();
-    Bloco bloco =  new Bloco();
+    Bloco fileira1 =  new Bloco();
+    Bloco fileira2 =  new Bloco();
+    Bloco fileira3 =  new Bloco();
+    Bloco fileira4 =  new Bloco();
+    Bloco fileira5 =  new Bloco();
+    Bloco fileira6 =  new Bloco();
+    Bloco fileira7 =  new Bloco();
+    Bloco fileira8 =  new Bloco();
+    Bloco fileira9 =  new Bloco();
+    Bloco fileira10 =  new Bloco();
+    Bloco fileira11 =  new Bloco();
+    Bloco fileira12 =  new Bloco();
+    
     private final GLUT glut = new GLUT();
     private final GLU glu = new GLU();
     private float rquad = 0.0f, rquadAntigo = 0.0f;
@@ -61,18 +73,18 @@ public class Renderiza  implements GLEventListener, KeyListener
 //                glut.glutSolidCube(1.3f);	
 //            gl.glPopMatrix();
                 
-            bloco.mostraBlocos(glut, gl, 21.5f);
-            bloco.mostraBlocos(glut, gl, 17f);
-            bloco.mostraBlocos(glut, gl, 12.5f);
-            bloco.mostraBlocos(glut, gl, 8f);   
-            bloco.mostraBlocos(glut, gl, 3.5f);
-            bloco.mostraBlocos(glut, gl, -1f);
-            bloco.mostraBlocos(glut, gl, -5.5f);
-            bloco.mostraBlocos(glut, gl, -10f);
-            bloco.mostraBlocos(glut, gl, -14.5f);
-            bloco.mostraBlocos(glut, gl, -19f);
-            bloco.mostraBlocos(glut, gl, -23.5f);
-            bloco.mostraBlocos(glut, gl, -28f);
+            fileira1.mostraBlocos(glut, gl, 21.5f);
+            fileira2.mostraBlocos(glut, gl, 17f);
+            fileira3.mostraBlocos(glut, gl, 12.5f);
+            fileira4.mostraBlocos(glut, gl, 8f);   
+            fileira5.mostraBlocos(glut, gl, 3.5f);
+            fileira6.mostraBlocos(glut, gl, -1f);
+            fileira7.mostraBlocos(glut, gl, -5.5f);
+            fileira8.mostraBlocos(glut, gl, -10f);
+            fileira9.mostraBlocos(glut, gl, -14.5f);
+            fileira10.mostraBlocos(glut, gl, -19f);
+            fileira11.mostraBlocos(glut, gl, -23.5f);
+            fileira12.mostraBlocos(glut, gl, -28f);
             personagem.mostraPersonagem(glut, gl);
         gl.glPopMatrix();
         
@@ -104,18 +116,20 @@ public class Renderiza  implements GLEventListener, KeyListener
 
     @Override
     public void init(GLAutoDrawable glad) {
-        bloco.setVetor0(1);
-        bloco.setVetor1(1);
-        bloco.setVetor2(1);
-        bloco.setVetor3(1);
-        bloco.setVetor4(1);
-        bloco.setVetor5(1);
-        bloco.setVetor6(1);
-        bloco.setVetor7(1);
-        bloco.setVetor8(1);
-        bloco.setVetor9(1);
-        bloco.setVetor10(1);
-        bloco.setVetor11(1);
+        fileira1.setVetor0(1);
+        fileira2.setVetor1(1);
+        fileira3.setVetor2(1);
+        fileira4.setVetor3(1);
+        fileira5.setVetor4(1);
+        fileira6.setVetor5(1);
+        fileira7.setVetor6(1);
+        fileira8.setVetor7(1);
+        fileira9.setVetor8(1);
+        fileira10.setVetor9(1);
+        fileira11.setVetor10(1);
+        fileira12.setVetor0(1);
+        //fileira12.setVetor1(1);
+        fileira12.setVetor11(1);
         
         // TUDO ISSO AQUI PRA TEXTURA DO AMBIENTE
         // Comandos de inicialização para textura
@@ -201,24 +215,24 @@ public class Renderiza  implements GLEventListener, KeyListener
                     System.exit(0);
                     break;
                 case KeyEvent.VK_F:
-                        bloco.setVetor2(0);
+                        fileira1.setVetor2(0);
                     break;
                 case KeyEvent.VK_J:
-                        bloco.setVetor0(0);
+                        fileira1.setVetor0(0);
                     break;
                 case KeyEvent.VK_B:
-                        bloco.setVetor0(0);
-                        bloco.setVetor1(0);
-                        bloco.setVetor2(0);
-                        bloco.setVetor3(0);
-                        bloco.setVetor4(0);
-                        bloco.setVetor5(0);
-                        bloco.setVetor6(0);
-                        bloco.setVetor7(0);
-                        bloco.setVetor8(0);
-                        bloco.setVetor9(0);
-                        bloco.setVetor10(0);
-                        bloco.setVetor11(0);
+                        fileira1.setVetor0(0);
+                        fileira1.setVetor1(0);
+                        fileira1.setVetor2(0);
+                        fileira1.setVetor3(0);
+                        fileira1.setVetor4(0);
+                        fileira1.setVetor5(0);
+                        fileira1.setVetor6(0);
+                        fileira1.setVetor7(0);
+                        fileira1.setVetor8(0);
+                        fileira1.setVetor9(0);
+                        fileira1.setVetor10(0);
+                        fileira1.setVetor11(0);
                     break;
                 default:
                     break;
@@ -231,24 +245,24 @@ public class Renderiza  implements GLEventListener, KeyListener
         if(CD){
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_F:
-                        bloco.setVetor2(1);
+                        fileira1.setVetor2(1);
                     break;
                 case KeyEvent.VK_J:
-                        bloco.setVetor0(1);
+                        fileira1.setVetor0(1);
                     break;
                 case KeyEvent.VK_B:
-                    bloco.setVetor0(1);
-                    bloco.setVetor1(1);
-                    bloco.setVetor2(1);
-                    bloco.setVetor3(1);
-                    bloco.setVetor4(1);
-                    bloco.setVetor5(1);
-                    bloco.setVetor6(1);
-                    bloco.setVetor7(1);
-                    bloco.setVetor8(1);
-                    bloco.setVetor9(1);
-                    bloco.setVetor10(1);
-                    bloco.setVetor11(1);
+                    fileira1.setVetor0(1);
+                    fileira1.setVetor1(1);
+                    fileira1.setVetor2(1);
+                    fileira1.setVetor3(1);
+                    fileira1.setVetor4(1);
+                    fileira1.setVetor5(1);
+                    fileira1.setVetor6(1);
+                    fileira1.setVetor7(1);
+                    fileira1.setVetor8(1);
+                    fileira1.setVetor9(1);
+                    fileira1.setVetor10(1);
+                    fileira1.setVetor11(1);
                     break;
             default:
                     break;

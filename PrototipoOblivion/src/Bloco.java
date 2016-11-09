@@ -21,7 +21,7 @@ public class Bloco {
         gl.glPushMatrix();
             gl.glTranslatef(0f, -2f, x);
             gl.glPushMatrix();
-                gl.glTranslatef(-1.3f, 0f, 0f);
+                gl.glTranslatef(1.3f, 0f, 0f);
                 gl.glColor3f(1f, vetor[0], vetor[0]);
                 gl.glScalef(1f, .1f,1f);
                 glut.glutSolidCube(1.2f);	
@@ -33,7 +33,7 @@ public class Bloco {
                 glut.glutSolidCube(1.2f);	
             gl.glPopMatrix();
             gl.glPushMatrix();
-                gl.glTranslatef(1.3f, 0f, 0f);
+                gl.glTranslatef(-1.3f, 0f, 0f);
                 gl.glColor3f(1f, vetor[2], vetor[2]);
                 gl.glScalef(1f, .1f,1f);
                 glut.glutSolidCube(1.2f);	
