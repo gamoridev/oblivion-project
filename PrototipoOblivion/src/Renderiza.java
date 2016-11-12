@@ -46,7 +46,17 @@ public class Renderiza  implements GLEventListener, KeyListener
     private GL2 gl;
     Random aleatorio = new Random();
     
-    int vetorCerto[] = new int[12];
+    int vetorCerto[] = {aleatorio.nextInt(3),
+    aleatorio.nextInt(3),
+    aleatorio.nextInt(3),
+    aleatorio.nextInt(3),
+    aleatorio.nextInt(3),
+    aleatorio.nextInt(3),
+    aleatorio.nextInt(3),
+    aleatorio.nextInt(3),
+    aleatorio.nextInt(3),
+    aleatorio.nextInt(3),
+    aleatorio.nextInt(3),};
     
     @Override
     public void display(GLAutoDrawable gLDrawable) {
@@ -395,54 +405,223 @@ public class Renderiza  implements GLEventListener, KeyListener
     
     private void piscaBlocosCertos() {
         if (contPisca < 41){
-            pisca(fileira2);
+            switch (vetorCerto[0]) {
+                case 0:
+                    pisca(fileira2, 0);
+                    break;
+                case 1:
+                    pisca(fileira2, 1);
+                    break;
+                case 2:
+                    pisca(fileira2, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         if (contPisca > 41 && contPisca < 84){
-            pisca(fileira3);
+            switch (vetorCerto[1]) {
+                case 0:
+                    pisca(fileira3, 0);
+                    break;
+                case 1:
+                    pisca(fileira3, 1);
+                    break;
+                case 2:
+                    pisca(fileira3, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         if (contPisca > 84 && contPisca < 127){
-            pisca(fileira4);
+            switch (vetorCerto[2]) {
+                case 0:
+                    pisca(fileira4, 0);
+                    break;
+                case 1:
+                    pisca(fileira4, 1);
+                    break;
+                case 2:
+                    pisca(fileira4, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         if (contPisca > 127 && contPisca < 171){
-            pisca(fileira5);
+            switch (vetorCerto[3]) {
+                case 0:
+                    pisca(fileira5, 0);
+                    break;
+                case 1:
+                    pisca(fileira5, 1);
+                    break;
+                case 2:
+                    pisca(fileira5, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         if (contPisca > 171 && contPisca < 214){
-            pisca(fileira6);
+            switch (vetorCerto[4]) {
+                case 0:
+                    pisca(fileira6, 0);
+                    break;
+                case 1:
+                    pisca(fileira6, 1);
+                    break;
+                case 2:
+                    pisca(fileira6, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         if (contPisca > 214 && contPisca < 257){
-            pisca(fileira7);
+            switch (vetorCerto[5]) {
+                case 0:
+                    pisca(fileira7, 0);
+                    break;
+                case 1:
+                    pisca(fileira7, 1);
+                    break;
+                case 2:
+                    pisca(fileira7, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         if (contPisca > 257 && contPisca < 300){
-            pisca(fileira8);
+            switch (vetorCerto[6]) {
+                case 0:
+                    pisca(fileira8, 0);
+                    break;
+                case 1:
+                    pisca(fileira8, 1);
+                    break;
+                case 2:
+                    pisca(fileira8, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         if (contPisca > 300 && contPisca < 343){
-            pisca(fileira9);
+            switch (vetorCerto[7]) {
+                case 0:
+                    pisca(fileira9, 0);
+                    break;
+                case 1:
+                    pisca(fileira9, 1);
+                    break;
+                case 2:
+                    pisca(fileira9, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         if (contPisca > 343 && contPisca < 386){
-            pisca(fileira10);
+            switch (vetorCerto[8]) {
+                case 0:
+                    pisca(fileira10, 0);
+                    break;
+                case 1:
+                    pisca(fileira10, 1);
+                    break;
+                case 2:
+                    pisca(fileira10, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         if (contPisca > 386 && contPisca < 429){
-            pisca(fileira11);
+            switch (vetorCerto[9]) {
+                case 0:
+                    pisca(fileira11, 0);
+                    break;
+                case 1:
+                    pisca(fileira11, 1);
+                    break;
+                case 2:
+                    pisca(fileira11, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         if (contPisca > 429 && contPisca < 471){
-            pisca(fileira12);
+            switch (vetorCerto[10]) {
+                case 0:
+                    pisca(fileira12, 0);
+                    break;
+                case 1:
+                    pisca(fileira12, 1);
+                    break;
+                case 2:
+                    pisca(fileira12, 2);
+                    break;
+                default:
+                    break;
+            }
         }
         contPisca++;
-        System.out.println(contPisca +" - "+piscaBloco);
+//        System.out.println(contPisca +" - "+piscaBloco);
+        System.out.println(vetorCerto[0] +" - "+vetorCerto[1]);
     }
     
-    private void pisca(Bloco fileira) {
+    private void pisca(Bloco fileira, int vetorCerto) {
         if (pisca && piscaBloco >= 0 && piscaBloco <= 1) {
             piscaBloco += 0.1;
-            fileira.setVetor0(piscaBloco);
+            switch (vetorCerto) {
+                case 0:
+                    fileira.setVetor0(piscaBloco);
+                    break;
+                case 1:
+                    fileira.setVetor1(piscaBloco);
+                    break;
+                case 2:
+                    fileira.setVetor2(piscaBloco);
+                    break;
+                default:
+                    break;
+            }
         } else {
             pisca = false;
             piscaBloco -= 0.1;
-            fileira.setVetor0(piscaBloco);
+            switch (vetorCerto) {
+                case 0:
+                    fileira.setVetor0(piscaBloco);
+                    break;
+                case 1:
+                    fileira.setVetor1(piscaBloco);
+                    break;
+                case 2:
+                    fileira.setVetor2(piscaBloco);
+                    break;
+                default:
+                    break;
+            }
             if (piscaBloco <= 0) {
                 pisca = true;
                 piscaBloco += 0.1;
-                fileira.setVetor0(piscaBloco);
+                switch (vetorCerto) {
+                    case 0:
+                        fileira.setVetor0(piscaBloco);
+                        break;
+                    case 1:
+                        fileira.setVetor1(piscaBloco);
+                        break;
+                    case 2:
+                        fileira.setVetor2(piscaBloco);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
