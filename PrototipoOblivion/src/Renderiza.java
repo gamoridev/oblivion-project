@@ -29,10 +29,10 @@ public class Renderiza  implements GLEventListener, KeyListener
     
     private final GLUT glut = new GLUT();
     private final GLU glu = new GLU();
-    private float rquad = 0.0f, rquadAntigo = 0.0f;
+    private final float rquad = 0.0f, rquadAntigo = 0.0f;
     private float eixoX = 0f, eixoY = 0f, eixoZ= -34f;
-    private float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
-    private float auxY = 0, auxX = 0;
+    private final float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
+    private final float auxY = 0, auxX = 0;
     private boolean pula = true, startF, startD, startE, CD = true, pisca = true;
     private boolean giroEsquerda = false, giroDireita = false; 
 //    private float ambiente.getAnguloAmb() = 0, anguloBloco = 0 ;
@@ -46,6 +46,7 @@ public class Renderiza  implements GLEventListener, KeyListener
     private GL2 gl;
     Random aleatorio = new Random();
     
+    int vetorCerto[] = new int[12];
     
     @Override
     public void display(GLAutoDrawable gLDrawable) {
@@ -399,35 +400,35 @@ public class Renderiza  implements GLEventListener, KeyListener
         if (contPisca > 41 && contPisca < 84){
             pisca(fileira3);
         }
-        if (contPisca > 84 && contPisca < 148){
+        if (contPisca > 84 && contPisca < 127){
             pisca(fileira4);
         }
-        if (contPisca > 148 && contPisca < 191){
+        if (contPisca > 127 && contPisca < 171){
             pisca(fileira5);
         }
-        if (contPisca > 191 && contPisca < 234){
+        if (contPisca > 171 && contPisca < 214){
             pisca(fileira6);
         }
-        if (contPisca > 234 && contPisca < 277){
+        if (contPisca > 214 && contPisca < 257){
             pisca(fileira7);
         }
-        if (contPisca > 277 && contPisca < 320){
+        if (contPisca > 257 && contPisca < 300){
             pisca(fileira8);
         }
-        if (contPisca > 320 && contPisca < 364){
+        if (contPisca > 300 && contPisca < 343){
             pisca(fileira9);
         }
-        if (contPisca > 364 && contPisca < 407){
+        if (contPisca > 343 && contPisca < 386){
             pisca(fileira10);
         }
-        if (contPisca > 407 && contPisca < 449){
+        if (contPisca > 386 && contPisca < 429){
             pisca(fileira11);
         }
-        if (contPisca > 449 && contPisca < 492){
+        if (contPisca > 429 && contPisca < 471){
             pisca(fileira12);
         }
         contPisca++;
-        System.out.println(contPisca+ " - "+ piscaBloco);
+        System.out.println(contPisca +" - "+piscaBloco);
     }
     
     private void pisca(Bloco fileira) {
