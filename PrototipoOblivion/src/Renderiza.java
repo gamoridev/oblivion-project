@@ -46,20 +46,24 @@ public class Renderiza  implements GLEventListener, KeyListener
     private GL2 gl;
     Random aleatorio = new Random();
     
-    int vetorCerto[] = {aleatorio.nextInt(3),
-    aleatorio.nextInt(3),
-    aleatorio.nextInt(3),
-    aleatorio.nextInt(3),
-    aleatorio.nextInt(3),
-    aleatorio.nextInt(3),
-    aleatorio.nextInt(3),
-    aleatorio.nextInt(3),
-    aleatorio.nextInt(3),
-    aleatorio.nextInt(3),
-    aleatorio.nextInt(3),};
     
+    int vetorCerto[] = {aleatorio.nextInt(3),
+    1,
+    aleatorio.nextInt(3),
+    1,
+    aleatorio.nextInt(3),
+    1,
+    aleatorio.nextInt(3),
+    1,
+    aleatorio.nextInt(3),
+    1,
+    aleatorio.nextInt(3)};
+
     @Override
     public void display(GLAutoDrawable gLDrawable) {
+        System.out.println(vetorCerto[0]+" \t"+vetorCerto[1]+" \t"+vetorCerto[2]+" \t"+vetorCerto[3]+" \t"+vetorCerto[4]+" \t"+
+                vetorCerto[5]+" \t"+vetorCerto[6]+" \t"+vetorCerto[7]+" \t"+vetorCerto[8]+" \t"+vetorCerto[9]+" \t"+
+                vetorCerto[10]);
         final GL2 gl = gLDrawable.getGL().getGL2();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
@@ -570,8 +574,6 @@ public class Renderiza  implements GLEventListener, KeyListener
             }
         }
         contPisca++;
-//        System.out.println(contPisca +" - "+piscaBloco);
-        System.out.println(vetorCerto[0] +" - "+vetorCerto[1]);
     }
     
     private void pisca(Bloco fileira, int vetorCerto) {
