@@ -33,14 +33,13 @@ public class Renderiza  implements GLEventListener, KeyListener
     private float eixoX = 0f, eixoY = 0f, eixoZ= -34f;
     private float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
     private float auxY = 0, auxX = 0;
-    private boolean pula = true, startF, startD, startE, CD = true;
+    private boolean pula = true, startF, startD, startE, CD = true, pisca = true;
     private boolean giroEsquerda = false, giroDireita = false; 
 //    private float ambiente.getAnguloAmb() = 0, anguloBloco = 0 ;
-    private int wView = 1000, yView = 750;
+    private int wView = 1000, yView = 750, contPisca = 0;
     int contSaltos = 0;
     float variavelBOA;
     float piscaBloco = 0;
-    boolean teste;
        
     //VARIAVEIS TEXTURA
     private int idTextura[];
@@ -111,14 +110,11 @@ public class Renderiza  implements GLEventListener, KeyListener
             giraAmbDireita();
         }
         personagem.setRotacao(personagem.getRotacao()+ variavelBOA);
-        if (piscaBloco >= 0 && teste == false){
-            fileira2.setVetor0(piscaBloco);
-            piscaBloco += 0.02;
-            if (piscaBloco >= 1){
-                teste = true;
-            }
-        } 
-        System.out.println(piscaBloco);
+        
+        /*
+        *  Faz o blocos certos piscarem por um curto período de tempo.
+        */
+        piscaBlocosCertos();
         gl.glFlush();
     }
     
@@ -344,7 +340,7 @@ public class Renderiza  implements GLEventListener, KeyListener
            ambiente.setAnguloAmb(ambiente.getAnguloAmb()+5);
         }
     }
-
+    
     private void setaRotacao() {
         if(contSaltos == 30)
         {
@@ -396,4 +392,57 @@ public class Renderiza  implements GLEventListener, KeyListener
         }
     }
     
+    private void piscaBlocosCertos() {
+        if (contPisca < 41){
+            pisca(fileira2);
+        }
+        if (contPisca > 41 && contPisca < 84){
+            pisca(fileira3);
+        }
+        if (contPisca > 84 && contPisca < 148){
+            pisca(fileira4);
+        }
+        if (contPisca > 148 && contPisca < 191){
+            pisca(fileira5);
+        }
+        if (contPisca > 191 && contPisca < 234){
+            pisca(fileira6);
+        }
+        if (contPisca > 234 && contPisca < 277){
+            pisca(fileira7);
+        }
+        if (contPisca > 277 && contPisca < 320){
+            pisca(fileira8);
+        }
+        if (contPisca > 320 && contPisca < 364){
+            pisca(fileira9);
+        }
+        if (contPisca > 364 && contPisca < 407){
+            pisca(fileira10);
+        }
+        if (contPisca > 407 && contPisca < 449){
+            pisca(fileira11);
+        }
+        if (contPisca > 449 && contPisca < 492){
+            pisca(fileira12);
+        }
+        contPisca++;
+        System.out.println(contPisca+ " - "+ piscaBloco);
+    }
+    
+    private void pisca(Bloco fileira) {
+        if (pisca && piscaBloco >= 0 && piscaBloco <= 1) {
+            piscaBloco += 0.1;
+            fileira.setVetor0(piscaBloco);
+        } else {
+            pisca = false;
+            piscaBloco -= 0.1;
+            fileira.setVetor0(piscaBloco);
+            if (piscaBloco <= 0) {
+                pisca = true;
+                piscaBloco += 0.1;
+                fileira.setVetor0(piscaBloco);
+            }
+        }
+    }
 }
