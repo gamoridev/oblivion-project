@@ -34,12 +34,16 @@ public class Renderiza  implements GLEventListener, KeyListener
     private final float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
     private final float auxY = 0, auxX = 0;
     private boolean pula = true, startF, startD, startE, CD = true, pisca = true;
+    boolean morte = false;
     private boolean giroEsquerda = false, giroDireita = false; 
 //    private float ambiente.getAnguloAmb() = 0, anguloBloco = 0 ;
     private int wView = 1000, yView = 750, contPisca = 0;
-    int contSaltos = 0;
+    int contSaltos = 0, contPulo = 0;
     float variavelBOA;
     float piscaBloco = 0;
+    char direcaoPulo;
+    String posicaoAtual = "centro";
+    
        
     //VARIAVEIS TEXTURA
     private int idTextura[];
@@ -61,9 +65,6 @@ public class Renderiza  implements GLEventListener, KeyListener
 
     @Override
     public void display(GLAutoDrawable gLDrawable) {
-        System.out.println(vetorCerto[0]+" \t"+vetorCerto[1]+" \t"+vetorCerto[2]+" \t"+vetorCerto[3]+" \t"+vetorCerto[4]+" \t"+
-                vetorCerto[5]+" \t"+vetorCerto[6]+" \t"+vetorCerto[7]+" \t"+vetorCerto[8]+" \t"+vetorCerto[9]+" \t"+
-                vetorCerto[10]);
         final GL2 gl = gLDrawable.getGL().getGL2();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
@@ -125,7 +126,6 @@ public class Renderiza  implements GLEventListener, KeyListener
             giraAmbDireita();
         }
         personagem.setRotacao(personagem.getRotacao()+ variavelBOA);
-        
         /*
         *  Faz o blocos certos piscarem por um curto período de tempo.
         */
@@ -206,6 +206,9 @@ public class Renderiza  implements GLEventListener, KeyListener
                 case KeyEvent.VK_W:
                     startF = true;
                     CD = false;
+                    contPulo++;
+                    direcaoPulo = 'f';
+                    verificaPulo(false, true, false);
                     break;
                 case KeyEvent.VK_S:
                     ambiente.setAnguloAmb(ambiente.getAnguloAmb()-5);
@@ -218,6 +221,9 @@ public class Renderiza  implements GLEventListener, KeyListener
                         startE = true;
                         CD = false;
                     }
+                    contPulo++;
+                    direcaoPulo = 'e';
+                    verificaPulo(true, false, false);
                     break;
                 case KeyEvent.VK_D:
                     if(personagem.getPersonagemX() < -1.1f && personagem.getPersonagemX() > -1.3f ){
@@ -227,12 +233,15 @@ public class Renderiza  implements GLEventListener, KeyListener
                         startD = true;
                         CD = false;
                     }
+                    contPulo++;
+                    direcaoPulo = 'd';
+                    verificaPulo(false, false, true);
                     break;
                 case KeyEvent.VK_ESCAPE:
                     System.exit(0);
                     break;
                 case KeyEvent.VK_F:
-                        fileira1.setVetor2(0);
+                        personagem.mostraCordPersonagem();
                     break;
                 case KeyEvent.VK_J:
                         fileira1.setVetor0(0);
@@ -625,6 +634,72 @@ public class Renderiza  implements GLEventListener, KeyListener
                         break;
                 }
             }
+        }
+    }
+    
+    /*
+    * Verifica se o personagem pulou no bloco correto
+    * Ele começa na primeira fileira
+    */
+    
+    public void verificaPulo(boolean E, boolean F, boolean D) {
+        String posicao = "C";
+        switch (contPulo) {
+            // Primeiro pulo - segunda fileira
+            case 1:
+                switch (vetorCerto[0]) {
+                    case 0:
+                        if (E) {
+                            posicao = "E";
+                        } else {
+                            System.out.println("VOCE MORREU");
+                        }
+                        break;
+                    case 1:
+                        if (F) {
+                            posicao = "C";
+                        } else {
+                            System.out.println("VOCE MORREU");
+                        }
+                        break;
+                    case 2:
+                        if (D) {
+                            posicao = "D";
+                        } else {
+                            System.out.println("VOCE MORREU");
+                        }
+                        break;
+                }
+                break;
+            // Segundo pulo - terceira fileira
+            case 2:
+                switch (vetorCerto[1]) {
+                    case 1:
+                        switch (posicao) {
+                            case "E":
+                                if (D) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (F) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "D":
+                                if (E) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                        }
+                        break;
+                }
         }
     }
 }
