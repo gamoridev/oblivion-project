@@ -75,6 +75,11 @@ public class Renderiza  implements GLEventListener, KeyListener
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity(); 
         glu.gluLookAt(eixoX, eixoY, eixoZ, 0, 0, 30, 0, 1, 0);
+        if (CD){
+            if (morte){
+                System.exit(0);
+            }
+        }
         
         
         setaRotacao();
