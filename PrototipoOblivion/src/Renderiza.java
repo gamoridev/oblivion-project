@@ -652,21 +652,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                         if (E) {
                             posicao = "E";
                         } else {
-                            System.out.println("VOCE MORREU");
+                            morte = true;
                         }
                         break;
                     case 1:
                         if (F) {
                             posicao = "C";
                         } else {
-                            System.out.println("VOCE MORREU");
+                            morte = true;
                         }
                         break;
                     case 2:
                         if (D) {
                             posicao = "D";
                         } else {
-                            System.out.println("VOCE MORREU");
+                            morte = true;
                         }
                         break;
                 }
@@ -680,21 +680,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (D) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (F) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "D":
                                 if (E) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                         }
@@ -709,14 +709,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (E) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -730,21 +730,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (D) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (F) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "D":
                                 if (E) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                         }
@@ -755,14 +755,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (D) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -780,14 +780,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (E) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -801,21 +801,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (D) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (F) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "D":
                                 if (E) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                         }
@@ -826,14 +826,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (D) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -851,14 +851,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (E) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -872,21 +872,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (D) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (F) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "D":
                                 if (E) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                         }
@@ -897,14 +897,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (D) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -922,14 +922,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (E) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -943,21 +943,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (D) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (F) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "D":
                                 if (E) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                         }
@@ -968,14 +968,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (D) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -993,14 +993,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (E) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -1014,21 +1014,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (D) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (F) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "D":
                                 if (E) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                         }
@@ -1039,14 +1039,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (D) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -1064,14 +1064,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (E) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -1085,21 +1085,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (D) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (F) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "D":
                                 if (E) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                         }
@@ -1110,14 +1110,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (D) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -1135,14 +1135,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (E) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -1156,21 +1156,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (D) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (F) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "D":
                                 if (E) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                         }
@@ -1181,14 +1181,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (D) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -1206,14 +1206,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (E) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -1227,21 +1227,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (D) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (F) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "D":
                                 if (E) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                         }
@@ -1252,14 +1252,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (D) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -1277,14 +1277,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (E) {
                                     posicao = "E";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
@@ -1298,21 +1298,21 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (D) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (F) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "D":
                                 if (E) {
                                     posicao = "C";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                         }
@@ -1323,14 +1323,14 @@ public class Renderiza  implements GLEventListener, KeyListener
                                 if (F) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             case "C":
                                 if (D) {
                                     posicao = "D";
                                 } else {
-                                    System.out.println("VOCE MORREU");
+                                    morte = true;
                                 }
                                 break;
                             default:
