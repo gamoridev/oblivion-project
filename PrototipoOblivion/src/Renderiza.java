@@ -42,7 +42,7 @@ public class Renderiza  implements GLEventListener, KeyListener
     float variavelBOA;
     float piscaBloco = 0;
     char direcaoPulo;
-    String posicaoAtual = "centro";
+    String posicao = "C";
     
        
     //VARIAVEIS TEXTURA
@@ -643,10 +643,10 @@ public class Renderiza  implements GLEventListener, KeyListener
     */
     
     public void verificaPulo(boolean E, boolean F, boolean D) {
-        String posicao = "C";
         switch (contPulo) {
             // Primeiro pulo - segunda fileira
             case 1:
+                posicao = "C";
                 switch (vetorCerto[0]) {
                     case 0:
                         if (E) {
@@ -700,6 +700,646 @@ public class Renderiza  implements GLEventListener, KeyListener
                         }
                         break;
                 }
+                break;
+            case 3:
+                switch (vetorCerto[2]) {
+                    case 0:
+                        switch (posicao) {
+                            case "E":
+                                if (F) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (E) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (posicao) {
+                            case "E":
+                                if (D) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (F) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "D":
+                                if (E) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (posicao) {
+                            case "D":
+                                if (F) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (D) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 4:
+                switch (vetorCerto[3]) {
+                    case 0:
+                        switch (posicao) {
+                            case "E":
+                                if (F) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (E) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (posicao) {
+                            case "E":
+                                if (D) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (F) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "D":
+                                if (E) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (posicao) {
+                            case "D":
+                                if (F) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (D) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 5:
+                switch (vetorCerto[4]) {
+                    case 0:
+                        switch (posicao) {
+                            case "E":
+                                if (F) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (E) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (posicao) {
+                            case "E":
+                                if (D) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (F) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "D":
+                                if (E) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (posicao) {
+                            case "D":
+                                if (F) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (D) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 6:
+                switch (vetorCerto[5]) {
+                    case 0:
+                        switch (posicao) {
+                            case "E":
+                                if (F) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (E) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (posicao) {
+                            case "E":
+                                if (D) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (F) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "D":
+                                if (E) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (posicao) {
+                            case "D":
+                                if (F) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (D) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 7:
+                switch (vetorCerto[6]) {
+                    case 0:
+                        switch (posicao) {
+                            case "E":
+                                if (F) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (E) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (posicao) {
+                            case "E":
+                                if (D) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (F) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "D":
+                                if (E) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (posicao) {
+                            case "D":
+                                if (F) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (D) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 8:
+                switch (vetorCerto[7]) {
+                    case 0:
+                        switch (posicao) {
+                            case "E":
+                                if (F) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (E) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (posicao) {
+                            case "E":
+                                if (D) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (F) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "D":
+                                if (E) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (posicao) {
+                            case "D":
+                                if (F) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (D) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 9:
+                switch (vetorCerto[8]) {
+                    case 0:
+                        switch (posicao) {
+                            case "E":
+                                if (F) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (E) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (posicao) {
+                            case "E":
+                                if (D) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (F) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "D":
+                                if (E) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (posicao) {
+                            case "D":
+                                if (F) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (D) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 10:
+                switch (vetorCerto[9]) {
+                    case 0:
+                        switch (posicao) {
+                            case "E":
+                                if (F) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (E) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (posicao) {
+                            case "E":
+                                if (D) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (F) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "D":
+                                if (E) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (posicao) {
+                            case "D":
+                                if (F) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (D) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 11:
+                switch (vetorCerto[10]) {
+                    case 0:
+                        switch (posicao) {
+                            case "E":
+                                if (F) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (E) {
+                                    posicao = "E";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (posicao) {
+                            case "E":
+                                if (D) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (F) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "D":
+                                if (E) {
+                                    posicao = "C";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (posicao) {
+                            case "D":
+                                if (F) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            case "C":
+                                if (D) {
+                                    posicao = "D";
+                                } else {
+                                    System.out.println("VOCE MORREU");
+                                }
+                                break;
+                            default:
+                                System.out.println("VOCE JA ESTA MORTO");
+                                break;
+                        }
+                        break;
+                }
+                break;
         }
     }
 }
