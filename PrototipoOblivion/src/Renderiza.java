@@ -30,7 +30,7 @@ public class Renderiza  implements GLEventListener, KeyListener
     private final GLUT glut = new GLUT();
     private final GLU glu = new GLU();
     private final float rquad = 0.0f, rquadAntigo = 0.0f;
-    private float eixoX = 0f, eixoY = 0f, eixoZ= -34f;
+    private float eixoX = 0f, eixoY = .35f, eixoZ= -34f;
     private final float velocidadeX = 4.0f, velocidadeY = 0.0f, velocidadeZ = 0.0f;
     private final float auxY = 0, auxX = 0;
     private boolean pula = true, startF, startD, startE, CD = true, pisca = true;
@@ -43,7 +43,7 @@ public class Renderiza  implements GLEventListener, KeyListener
     float piscaBloco = 0;
     char direcaoPulo;
     String posicao = "C";
-    
+    boolean pause = false;
        
     //VARIAVEIS TEXTURA
     private int idTextura[];
@@ -183,20 +183,16 @@ public class Renderiza  implements GLEventListener, KeyListener
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(CD){
+        if(e.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            if(pause){
+                pause = false;
+            }else{
+                pause = true;
+            }
+        }
+        if(CD && pause == false){
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_UP:
-                    eixoY += 1;
-                    break;
-                case KeyEvent.VK_DOWN:
-                    eixoY -= 1;
-                    break;
-                case KeyEvent.VK_LEFT:
-                    eixoX += 1;
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    eixoX -= 1;
-                    break;
                 case KeyEvent.VK_H:
                     eixoZ += 1;
                     break;
@@ -215,8 +211,6 @@ public class Renderiza  implements GLEventListener, KeyListener
                     break;
                 case KeyEvent.VK_A:
                     if(personagem.getPersonagemX() > 1.1f && personagem.getPersonagemX() < 1.3f ){
-                        CD = false;
-                        giroEsquerda =true;
                     }else{
                         startE = true;
                         CD = false;
@@ -227,8 +221,6 @@ public class Renderiza  implements GLEventListener, KeyListener
                     break;
                 case KeyEvent.VK_D:
                     if(personagem.getPersonagemX() < -1.1f && personagem.getPersonagemX() > -1.3f ){
-                        CD = false;
-                        giroDireita = true;
                     }else{
                         startD = true;
                         CD = false;
